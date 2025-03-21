@@ -1,6 +1,6 @@
 plugins {
-    id("uk.co.mhl.timezonetracker.android.feature")
-    id("uk.co.mhl.timezonetracker.android.library.compose")
+    alias(libs.plugins.timezonetracker.android.feature)
+    alias(libs.plugins.timezonetracker.android.library.compose)
 }
 
 android {

@@ -1,21 +1,16 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    id("uk.co.mhl.timezonetracker.application")
     alias(libs.plugins.kotlin.compose)
 }
 
 android {
     namespace = "uk.co.mhl.timezonetracker"
-    compileSdk = 35
 
     defaultConfig {
         applicationId = "uk.co.mhl.timezonetracker"
-        minSdk = 24
-        targetSdk = 35
+        // TODO: Abstract into version catalog.
         versionCode = 1
         versionName = "1.0"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -27,20 +22,13 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
 
+    implementation(project(":feature:timezones"))
+
+    // TODO: Tidy this list up.
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

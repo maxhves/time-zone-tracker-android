@@ -35,10 +35,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+    TimezonesScreen(modifier = modifier)
 }
 
 @Preview(showBackground = true)

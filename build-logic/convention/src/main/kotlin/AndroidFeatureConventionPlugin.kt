@@ -9,7 +9,7 @@ import uk.co.mhl.timezonetracker.libs
 class AndroidFeatureConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            apply(plugin = "uk.co.mhl.timezonetracker.android.library")
+            apply(plugin = "timezonetracker.android.library")
 
             extensions.configure<LibraryExtension> {
                 testOptions.animationsDisabled = true

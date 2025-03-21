@@ -24,27 +24,26 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        // TODO: Id's can be abstracted to version catalog.
         register("androidApplication") {
-            id = "uk.co.mhl.timezonetracker.android.application"
+            id = libs.plugins.timezonetracker.android.application.asProvider().get().pluginId
             implementationClass = "AndroidApplicationConventionPlugin"
         }
         register("androidApplicationCompose") {
-            id = "uk.co.mhl.timezonetracker.android.application.compose"
+            id = libs.plugins.timezonetracker.android.application.compose.get().pluginId
             implementationClass = "AndroidApplicationComposeConventionPlugin"
         }
 
         register("androidLibrary") {
-            id = "uk.co.mhl.timezonetracker.android.library"
+            id = libs.plugins.timezonetracker.android.library.asProvider().get().pluginId
             implementationClass = "AndroidLibraryConventionPlugin"
         }
         register("androidLibraryCompose") {
-            id = "uk.co.mhl.timezonetracker.android.library.compose"
+            id = libs.plugins.timezonetracker.android.library.compose.get().pluginId
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
 
         register("androidFeature") {
-            id = "uk.co.mhl.timezonetracker.android.feature"
+            id = libs.plugins.timezonetracker.android.feature.get().pluginId
             implementationClass = "AndroidFeatureConventionPlugin"
         }
     }

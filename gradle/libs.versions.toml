@@ -36,3 +36,10 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
+# Convention plugins
+timezonetracker-android-application = { id = "timezonetracker.android.application" }
+timezonetracker-android-application-compose = { id = "timezonetracker.android.application.compose" }
+timezonetracker-android-library = { id = "timezonetracker.android.library" }
+timezonetracker-android-library-compose = { id = "timezonetracker.android.library.compose" }
+timezonetracker-android-feature = { id = "timezonetracker.android.feature" }

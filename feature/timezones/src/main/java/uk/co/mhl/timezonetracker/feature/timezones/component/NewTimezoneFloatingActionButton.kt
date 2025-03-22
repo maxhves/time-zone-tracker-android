@@ -1,4 +1,4 @@
-package uk.co.mhl.timezonetracker.feature.timezones.components
+package uk.co.mhl.timezonetracker.feature.timezones.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth

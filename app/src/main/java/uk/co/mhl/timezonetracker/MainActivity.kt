@@ -31,7 +31,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(modifier: Modifier = Modifier) {
-    TimezonesScreen(modifier = modifier)
+    TimezonesScreen(
+        onNewTimezoneClick = { },
+        modifier = modifier
+    )
 }
 
 @Preview(showBackground = true)

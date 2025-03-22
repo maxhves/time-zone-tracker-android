@@ -24,10 +24,8 @@ android {
 }
 
 dependencies {
-    // Feature
+    // Internal
     implementation(project(":feature:timezones"))
-
-    // Core
     implementation(project(":core:designsystem"))
 
     // Compose
@@ -37,7 +35,10 @@ dependencies {
     // Foundations
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
+
+    // Navigation
     implementation(libs.androidx.navigation.compose)
+    implementation(libs.kotlinx.serialization.json)
 
     // UI
     implementation(libs.androidx.compose.ui)

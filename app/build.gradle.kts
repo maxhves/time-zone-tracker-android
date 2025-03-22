@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.timezonetracker.android.application)
     alias(libs.plugins.timezonetracker.android.application.compose)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {

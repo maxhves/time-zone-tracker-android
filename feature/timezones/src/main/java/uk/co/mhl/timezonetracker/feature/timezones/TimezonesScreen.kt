@@ -16,7 +16,7 @@ import uk.co.mhl.timezonetracker.feature.timezones.component.NewTimezoneFloating
 import uk.co.mhl.timezonetracker.feature.timezones.component.SavedTimezoneItem
 
 @Composable
-fun TimezonesScreen(
+internal fun TimezonesScreen(
     onNewTimezoneClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {

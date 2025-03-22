@@ -3,13 +3,7 @@ package uk.co.mhl.timezonetracker.feature.timezones
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-
-// TODO: Implement screen here.
-object TimezonesScreen {
-    fun testing(): String {
-        return "This is a test function"
-    }
-}
+import uk.co.mhl.timezonetracker.core.designsystem.theme.Purple40
 
 @Composable
 fun TimezonesScreen(
@@ -17,6 +11,7 @@ fun TimezonesScreen(
 ) {
     Text(
         modifier = modifier,
-        text = "Hello from the Timezones screen"
+        text = "Hello from the Timezones screen",
+        color = Purple40,
     )
 }

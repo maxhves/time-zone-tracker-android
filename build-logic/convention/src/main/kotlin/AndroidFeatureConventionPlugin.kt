@@ -16,6 +16,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             }
 
             dependencies {
+                "implementation"(project(":core:designsystem"))
+
                 "implementation"(libs.findLibrary("androidx.lifecycle.runtimeCompose").get())
             }
         }

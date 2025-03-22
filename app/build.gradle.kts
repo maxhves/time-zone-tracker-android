@@ -8,7 +8,6 @@ android {
 
     defaultConfig {
         applicationId = "uk.co.mhl.timezonetracker"
-        // TODO: Abstract into version catalog.
         versionCode = 1
         versionName = "1.0"
     }
@@ -25,8 +24,9 @@ android {
 }
 
 dependencies {
-
     implementation(project(":feature:timezones"))
+
+    implementation(project(":core:designsystem"))
 
     // TODO: Tidy this list up.
     implementation(libs.androidx.core.ktx)

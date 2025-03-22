@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import uk.co.mhl.timezonetracker.core.designsystem.component.TimezoneTrackerTopAppBar
@@ -34,6 +34,8 @@ internal fun TimezonesScreen(
     onNewTimezoneClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val currentTime = remember { System.currentTimeMillis() }
+
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -47,10 +49,12 @@ internal fun TimezonesScreen(
         Column(
             modifier = Modifier.padding(innerPadding),
         ) {
-            LocalTimeDisplay(currentTime = System.currentTimeMillis())
-            SavedTimezoneItem()
-            SavedTimezoneItem()
-            SavedTimezoneItem()
+            LocalTimeDisplay(currentTime = currentTime)
+            SavedTimezoneItem(
+                cityName = "Toronto",
+                offset = -5,
+                currentTime = currentTime,
+            )
         }
     }
 }

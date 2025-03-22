@@ -1,3 +1,13 @@
 <resources>
+    <!-- region Screen -->
+
     <string name="timezones_screen_title">Timezones</string>
+
+    <!-- endregion -->
+
+    <!-- region Local Time Display -->
+
+    <string name="local_time_display_label">Your local time</string>
+
+    <!-- endregion -->
 </resources>

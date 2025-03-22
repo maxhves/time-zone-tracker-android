@@ -1,5 +1,6 @@
 package uk.co.mhl.timezonetracker.feature.timezones
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
@@ -10,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import uk.co.mhl.timezonetracker.core.designsystem.component.TimezoneTrackerTopAppBar
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
+import uk.co.mhl.timezonetracker.feature.timezones.component.LocalTimeDisplay
 import uk.co.mhl.timezonetracker.feature.timezones.component.NewTimezoneFloatingActionButton
 
 @Composable
@@ -32,6 +34,7 @@ internal fun TimezonesScreen(
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
+        modifier = modifier,
         topBar = {
             TimezoneTrackerTopAppBar(
                 titleRes = R.string.timezones_screen_title,
@@ -40,9 +43,11 @@ internal fun TimezonesScreen(
         floatingActionButton = { NewTimezoneFloatingActionButton(onClick = onNewTimezoneClick) },
         floatingActionButtonPosition = FabPosition.Center,
     ) { innerPadding ->
-        Text(
-            modifier = Modifier.padding(innerPadding), text = "Hello"
-        )
+        Column(
+            modifier = Modifier.padding(innerPadding),
+        ) {
+            LocalTimeDisplay(currentTime = System.currentTimeMillis())
+        }
     }
 }
 

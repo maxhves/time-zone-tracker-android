@@ -1,4 +1,4 @@
-package uk.co.mhl.timezonetracker.ui.theme
+package uk.co.mhl.timezonetracker.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

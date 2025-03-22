@@ -8,5 +8,5 @@ android {
 }
 
 dependencies {
-    api(libs.androidx.material3)
+    api(libs.androidx.compose.material3)
 }

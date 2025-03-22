@@ -13,6 +13,7 @@ import uk.co.mhl.timezonetracker.core.designsystem.component.TimezoneTrackerTopA
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
 import uk.co.mhl.timezonetracker.feature.timezones.component.LocalTimeDisplay
 import uk.co.mhl.timezonetracker.feature.timezones.component.NewTimezoneFloatingActionButton
+import uk.co.mhl.timezonetracker.feature.timezones.component.SavedTimezoneItem
 
 @Composable
 fun TimezonesScreen(
@@ -47,6 +48,9 @@ internal fun TimezonesScreen(
             modifier = Modifier.padding(innerPadding),
         ) {
             LocalTimeDisplay(currentTime = System.currentTimeMillis())
+            SavedTimezoneItem()
+            SavedTimezoneItem()
+            SavedTimezoneItem()
         }
     }
 }

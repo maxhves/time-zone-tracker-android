@@ -16,7 +16,7 @@ import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
 import uk.co.mhl.timezonetracker.feature.timezones.component.LocalTimeDisplay
 import uk.co.mhl.timezonetracker.feature.timezones.component.NewTimezoneFloatingActionButton
 import uk.co.mhl.timezonetracker.feature.timezones.component.SavedTimezoneItem
-import java.time.ZonedDateTime
+import java.time.Instant
 
 @Composable
 internal fun TimezonesScreen(
@@ -27,7 +27,7 @@ internal fun TimezonesScreen(
     val uiState by viewModel.state.collectAsStateWithLifecycle()
 
     TimezonesScreen(
-        currentTime = uiState.currentTime,
+        currentTime = uiState.currentTime.epochSecond,
         savedTimezones = emptyList(),
         onNewTimezoneClick = onNewTimezoneClick,
         modifier = modifier,
@@ -37,7 +37,7 @@ internal fun TimezonesScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun TimezonesScreen(
-    currentTime: ZonedDateTime,
+    currentTime: Long,
     savedTimezones: List<String>,
     onNewTimezoneClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -55,11 +55,11 @@ internal fun TimezonesScreen(
         Column(
             modifier = Modifier.padding(innerPadding),
         ) {
-            LocalTimeDisplay(currentTime = currentTime.toEpochSecond())
+            LocalTimeDisplay(currentTime = currentTime)
             SavedTimezoneItem(
                 cityName = "Toronto",
                 offset = -5,
-                currentTime = currentTime.toEpochSecond(),
+                currentTime = currentTime,
             )
         }
     }
@@ -70,7 +70,7 @@ internal fun TimezonesScreen(
 private fun TimezonesScreenPreview() {
     TimezoneTrackerTheme {
         TimezonesScreen(
-            currentTime = ZonedDateTime.now(),
+            currentTime = Instant.now().epochSecond,
             savedTimezones = emptyList(),
             onNewTimezoneClick = { },
             modifier = Modifier,

@@ -9,6 +9,8 @@ import java.time.ZonedDateTime
 internal class ZonedTimeRepository(
     private val currentTimeDataSource: CurrentTimeDataSource,
 ) : TimeRepository {
+    // TODO: Should this be zoned? Probably not since the flow should return a zone agnostic time,
+    // TODO: and allow for the UI to adjust the time based on the saved zones.
     override fun getZonedCurrentTime(zoneId: ZoneId): Flow<ZonedDateTime> {
         return currentTimeDataSource.getCurrentTime().map { time ->
             time.atZone(zoneId)

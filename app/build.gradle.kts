@@ -29,6 +29,10 @@ dependencies {
     implementation(project(":feature:timezones"))
     implementation(project(":core:designsystem"))
 
+    // Coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+
     // Compose
     implementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(platform(libs.androidx.compose.bom))

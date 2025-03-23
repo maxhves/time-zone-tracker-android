@@ -46,5 +46,10 @@ gradlePlugin {
             id = libs.plugins.timezonetracker.android.feature.get().pluginId
             implementationClass = "AndroidFeatureConventionPlugin"
         }
+
+        register("hilt") {
+            id = libs.plugins.timezonetracker.hilt.get().pluginId
+            implementationClass = "HiltConventionPlugin"
+        }
     }
 }

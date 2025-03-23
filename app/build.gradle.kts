@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.timezonetracker.android.application)
     alias(libs.plugins.timezonetracker.android.application.compose)
+    alias(libs.plugins.timezonetracker.hilt)
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -40,6 +41,9 @@ dependencies {
     // Foundations
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
+
+    // Hilt
+    ksp(libs.hilt.compiler)
 
     // Navigation
     implementation(libs.androidx.navigation.compose)

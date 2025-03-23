@@ -2,7 +2,6 @@ package uk.co.mhl.timezones.core.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import uk.co.mhl.timezonetracker.core.local.CurrentTimeDataSource
 import uk.co.mhl.timezonetracker.core.local.TimeDataSource
 import java.time.ZoneId
 import java.time.ZonedDateTime

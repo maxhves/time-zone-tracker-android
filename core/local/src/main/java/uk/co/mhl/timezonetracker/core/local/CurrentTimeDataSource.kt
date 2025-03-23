@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.isActive
 import java.time.Instant
-import javax.inject.Inject
 
 private const val TICK_INTERVAL_DELAY: Long = 1_000
 

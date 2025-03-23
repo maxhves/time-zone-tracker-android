@@ -30,7 +30,6 @@ dependencyResolutionManagement {
 rootProject.name = "timezonetracker"
 
 include(":app")
-
 include(":core:designsystem")
-
+include(":core:local")
 include(":feature:timezones")

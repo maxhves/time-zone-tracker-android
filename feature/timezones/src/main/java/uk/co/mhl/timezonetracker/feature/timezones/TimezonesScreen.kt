@@ -19,7 +19,10 @@ import uk.co.mhl.timezonetracker.feature.timezones.component.SavedTimezoneItem
 internal fun TimezonesScreen(
     onNewTimezoneClick: () -> Unit,
     modifier: Modifier = Modifier,
+    // viewModel: TimezonesViewModel,
 ) {
+    // val uiState by viewModel.state.collectAsStateWithLifecycle()
+
     TimezonesScreen(
         savedTimezones = emptyList(),
         onNewTimezoneClick = onNewTimezoneClick,

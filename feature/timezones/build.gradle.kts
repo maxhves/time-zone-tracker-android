@@ -6,3 +6,7 @@ plugins {
 android {
     namespace = "uk.co.mhl.timezonetracker.feature.timezones"
 }
+
+dependencies {
+    implementation(project(":core:data"))
+}

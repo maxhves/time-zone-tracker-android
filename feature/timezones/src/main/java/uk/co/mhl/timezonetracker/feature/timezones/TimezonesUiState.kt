@@ -1,7 +1,7 @@
 package uk.co.mhl.timezonetracker.feature.timezones
 
-import java.time.ZonedDateTime
+import java.time.Instant
 
 data class TimezonesUiState(
-    val currentTime: ZonedDateTime = ZonedDateTime.now(),
+    val currentTime: Instant = Instant.now(),
 )

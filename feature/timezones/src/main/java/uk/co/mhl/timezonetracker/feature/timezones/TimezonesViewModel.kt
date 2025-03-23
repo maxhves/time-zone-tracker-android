@@ -18,7 +18,7 @@ class TimezonesViewModel @Inject constructor(
     //region State
 
     val state: StateFlow<TimezonesUiState> = zonedTimeRepository
-        .getZonedCurrentTime(ZoneId.systemDefault())
+        .getCurrentTime()
         .map { TimezonesUiState(currentTime = it) }
         .stateIn(
             scope = viewModelScope,

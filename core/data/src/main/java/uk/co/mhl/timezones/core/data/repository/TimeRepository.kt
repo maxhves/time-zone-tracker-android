@@ -1,9 +1,8 @@
 package uk.co.mhl.timezones.core.data.repository
 
 import kotlinx.coroutines.flow.Flow
-import java.time.ZoneId
-import java.time.ZonedDateTime
+import java.time.Instant
 
 interface TimeRepository {
-    fun getZonedCurrentTime(zoneId: ZoneId): Flow<ZonedDateTime>
+    fun getCurrentTime(): Flow<Instant>
 }

@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.timezonetracker.android.library)
 }
 
 android {
@@ -8,4 +8,6 @@ android {
 
 dependencies {
     api(project(":core:local"))
+
+    implementation(libs.kotlinx.coroutines.core)
 }

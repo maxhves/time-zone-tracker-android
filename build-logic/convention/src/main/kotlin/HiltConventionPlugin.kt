@@ -8,8 +8,10 @@ class HiltConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             apply(plugin = "com.google.devtools.ksp")
+            apply(plugin = "dagger.hilt.android.plugin")
 
             dependencies {
+                "implementation"(libs.findLibrary("hilt.android").get())
                 "ksp"(libs.findLibrary("hilt.compiler").get())
             }
         }

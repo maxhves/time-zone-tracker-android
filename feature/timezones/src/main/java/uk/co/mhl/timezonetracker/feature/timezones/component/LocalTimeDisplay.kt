@@ -51,8 +51,8 @@ fun test(time: Instant): String {
     time.atOffset(ZoneOffset.ofHours(-2))
 
     val formatter = DateTimeFormatter
-        .ofPattern("HH:mm:ss")
-        .withZone(ZoneId.of("America/Toronto"))
+        .ofPattern("HH:mm")
+        .withZone(ZoneId.of("Pacific/Auckland"))
     return formatter.format(time)
 }
 

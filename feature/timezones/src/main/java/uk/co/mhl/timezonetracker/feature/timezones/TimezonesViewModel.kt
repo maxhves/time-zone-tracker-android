@@ -1,5 +1,6 @@
 package uk.co.mhl.timezonetracker.feature.timezones
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,18 +9,19 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import uk.co.mhl.timezones.core.data.repository.TimeRepository
-import java.time.ZoneId
 import javax.inject.Inject
 
 @HiltViewModel
 class TimezonesViewModel @Inject constructor(
-    zonedTimeRepository: TimeRepository,
+    currentTimeRepository: TimeRepository,
 ) : ViewModel() {
     //region State
 
-    val state: StateFlow<TimezonesUiState> = zonedTimeRepository
+    val state: StateFlow<TimezonesUiState> = currentTimeRepository
         .getCurrentTime()
-        .map { TimezonesUiState(currentTime = it) }
+        .map {
+            TimezonesUiState(currentTime = it)
+        }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),

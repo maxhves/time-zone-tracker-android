@@ -15,11 +15,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
 import uk.co.mhl.timezonetracker.feature.timezones.R
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZoneOffset
+import java.time.format.DateTimeFormatter
 
 @Composable
 internal fun LocalTimeDisplay(
     modifier: Modifier = Modifier,
-    currentTime: Long,
+    currentTime: Instant,
 ) {
     Row(
         modifier = modifier
@@ -35,11 +39,21 @@ internal fun LocalTimeDisplay(
             color = MaterialTheme.colorScheme.onSurface,
         )
         Text(
-            text = "$currentTime",
+            text = test(currentTime),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface,
         )
     }
+}
+
+// TODO: Remove this testing function.
+fun test(time: Instant): String {
+    time.atOffset(ZoneOffset.ofHours(-2))
+
+    val formatter = DateTimeFormatter
+        .ofPattern("HH:mm:ss")
+        .withZone(ZoneId.of("America/Toronto"))
+    return formatter.format(time)
 }
 
 @Preview
@@ -47,7 +61,7 @@ internal fun LocalTimeDisplay(
 private fun LocalTimeDisplayPreview() {
     TimezoneTrackerTheme {
         LocalTimeDisplay(
-            currentTime = System.currentTimeMillis(),
+            currentTime = Instant.now(),
         )
     }
 }

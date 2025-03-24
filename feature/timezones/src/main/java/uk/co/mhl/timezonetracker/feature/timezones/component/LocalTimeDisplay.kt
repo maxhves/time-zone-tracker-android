@@ -17,8 +17,9 @@ import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
 import uk.co.mhl.timezonetracker.feature.timezones.R
 import java.time.Instant
 import java.time.ZoneId
-import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.Locale
 
 @Composable
 internal fun LocalTimeDisplay(
@@ -39,21 +40,24 @@ internal fun LocalTimeDisplay(
             color = MaterialTheme.colorScheme.onSurface,
         )
         Text(
-            text = test(currentTime),
+            text = dateFormatted(currentTime),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface,
         )
     }
 }
 
-// TODO: Remove this testing function.
-fun test(time: Instant): String {
-    time.atOffset(ZoneOffset.ofHours(-2))
-
-    val formatter = DateTimeFormatter
-        .ofPattern("HH:mm")
-        .withZone(ZoneId.of("Pacific/Auckland"))
-    return formatter.format(time)
+// TODO: Remove testing component (abstract to UI module).
+@Composable
+private fun dateFormatted(
+    currentTime: Instant,
+    zoneId: ZoneId = ZoneId.systemDefault()
+): String {
+    return DateTimeFormatter
+        .ofLocalizedTime(FormatStyle.SHORT)
+        .withLocale(Locale.getDefault())
+        .withZone(zoneId)
+        .format(currentTime)
 }
 
 @Preview

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "uk.co.mhl.timezones.core.data"
+    namespace = "uk.co.mhl.timezonetracker.core.data"
 }
 
 dependencies {

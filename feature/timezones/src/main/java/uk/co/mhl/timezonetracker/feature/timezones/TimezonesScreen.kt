@@ -27,7 +27,7 @@ internal fun TimezonesScreen(
     val uiState by viewModel.state.collectAsStateWithLifecycle()
 
     TimezonesScreen(
-        currentTime = uiState.currentTime.epochSecond,
+        currentTime = uiState.currentTime,
         savedTimezones = emptyList(),
         onNewTimezoneClick = onNewTimezoneClick,
         modifier = modifier,
@@ -37,7 +37,7 @@ internal fun TimezonesScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun TimezonesScreen(
-    currentTime: Long,
+    currentTime: Instant,
     savedTimezones: List<String>,
     onNewTimezoneClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -59,7 +59,7 @@ internal fun TimezonesScreen(
             SavedTimezoneItem(
                 cityName = "Toronto",
                 offset = -5,
-                currentTime = currentTime,
+                currentTime = 0L,
             )
         }
     }
@@ -70,7 +70,7 @@ internal fun TimezonesScreen(
 private fun TimezonesScreenPreview() {
     TimezoneTrackerTheme {
         TimezonesScreen(
-            currentTime = Instant.now().epochSecond,
+            currentTime = Instant.now(),
             savedTimezones = emptyList(),
             onNewTimezoneClick = { },
             modifier = Modifier,

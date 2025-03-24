@@ -14,18 +14,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
+import uk.co.mhl.timezonetracker.core.ui.zonedDateFormatted
 import uk.co.mhl.timezonetracker.feature.timezones.R
 import java.time.Instant
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.Locale
 
 @Composable
 internal fun LocalTimeDisplay(
     modifier: Modifier = Modifier,
     currentTime: Instant,
 ) {
+    val zonedDateFormatted =  zonedDateFormatted(currentTime)
+
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -40,24 +39,11 @@ internal fun LocalTimeDisplay(
             color = MaterialTheme.colorScheme.onSurface,
         )
         Text(
-            text = dateFormatted(currentTime),
+            text = zonedDateFormatted,
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurface,
         )
     }
-}
-
-// TODO: Remove testing component (abstract to UI module).
-@Composable
-private fun dateFormatted(
-    currentTime: Instant,
-    zoneId: ZoneId = ZoneId.systemDefault()
-): String {
-    return DateTimeFormatter
-        .ofLocalizedTime(FormatStyle.SHORT)
-        .withLocale(Locale.getDefault())
-        .withZone(zoneId)
-        .format(currentTime)
 }
 
 @Preview

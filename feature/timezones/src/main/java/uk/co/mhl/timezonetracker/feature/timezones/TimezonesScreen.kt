@@ -45,9 +45,7 @@ internal fun TimezonesScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
-            TimezoneTrackerTopAppBar(
-                titleRes = R.string.timezones_screen_title,
-            )
+            TimezoneTrackerTopAppBar(titleRes = R.string.timezones_screen_title)
         },
         floatingActionButton = { NewTimezoneFloatingActionButton(onClick = onNewTimezoneClick) },
         floatingActionButtonPosition = FabPosition.Center,
@@ -59,7 +57,7 @@ internal fun TimezonesScreen(
             SavedTimezoneItem(
                 cityName = "Toronto",
                 offset = -5,
-                currentTime = 0L,
+                currentTime = currentTime,
             )
         }
     }

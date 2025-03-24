@@ -1,6 +1,5 @@
 package uk.co.mhl.timezonetracker.feature.timezones.component
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,18 +13,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
+import uk.co.mhl.timezonetracker.core.ui.zonedDateFormatted
+import java.time.Instant
+import java.time.ZoneId
 
 @Composable
 internal fun SavedTimezoneItem(
     modifier: Modifier = Modifier,
     cityName: String,
     offset: Int,
-    currentTime: Long,
+    currentTime: Instant,
 ) {
+    val zonedDateFormatted = zonedDateFormatted(currentTime, ZoneId.of("America/Toronto"))
+
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .clickable {  }
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
@@ -40,7 +43,7 @@ internal fun SavedTimezoneItem(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Text(
-                text = "$currentTime",
+                text = zonedDateFormatted,
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.onBackground,
             )
@@ -60,7 +63,7 @@ private fun SavedTimezoneItemPreview() {
         SavedTimezoneItem(
             cityName = "Toronto",
             offset = -5,
-            currentTime = 9883908928,
+            currentTime = Instant.now(),
         )
     }
 }

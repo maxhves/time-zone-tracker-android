@@ -6,6 +6,8 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import uk.co.mhl.timezonetracker.core.data.repository.TimeRepository
 import uk.co.mhl.timezonetracker.core.data.repository.CurrentTimeRepository
+import uk.co.mhl.timezonetracker.core.data.util.TimeTickBroadcastMonitor
+import uk.co.mhl.timezonetracker.core.data.util.TimeTickMonitor
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -14,4 +16,9 @@ abstract class DataModule {
     internal abstract fun bindsTimeRepository(
         currentTimeRepository: CurrentTimeRepository
     ): TimeRepository
+
+    @Binds
+    internal abstract fun bindsTimeTickMonitor(
+        timeTickBroadcastMonitor: TimeTickBroadcastMonitor
+    ): TimeTickMonitor
 }

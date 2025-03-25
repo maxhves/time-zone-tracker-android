@@ -1,7 +1,7 @@
 package uk.co.mhl.timezonetracker.core.data.repository
 
 import kotlinx.coroutines.flow.Flow
-import uk.co.mhl.timezonetracker.core.local.TimeTickMonitor
+import uk.co.mhl.timezonetracker.core.data.util.TimeTickMonitor
 import java.time.Instant
 import javax.inject.Inject
 

@@ -32,6 +32,5 @@ rootProject.name = "timezonetracker"
 include(":app")
 include(":core:data")
 include(":core:designsystem")
-include(":core:local")
 include(":core:ui")
 include(":feature:timezones")

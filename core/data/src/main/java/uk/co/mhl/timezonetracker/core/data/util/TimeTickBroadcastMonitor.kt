@@ -1,4 +1,4 @@
-package uk.co.mhl.timezonetracker.core.local
+package uk.co.mhl.timezonetracker.core.data.util
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -7,7 +7,6 @@ import android.content.IntentFilter
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
@@ -25,8 +24,6 @@ import javax.inject.Singleton
 @Singleton
 internal class TimeTickBroadcastMonitor @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val appScope: CoroutineScope = CoroutineScope(Dispatchers.Default),
-    private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : TimeTickMonitor {
     override fun currentTime(): SharedFlow<Instant> = callbackFlow {
         trySend(Instant.now())
@@ -54,6 +51,6 @@ internal class TimeTickBroadcastMonitor @Inject constructor(
     }
         .distinctUntilChanged()
         .conflate()
-        .flowOn(ioDispatcher)
-        .shareIn(appScope, SharingStarted.WhileSubscribed(5_000, 1))
+        .flowOn(Dispatchers.IO)
+        .shareIn(CoroutineScope(Dispatchers.Default), SharingStarted.WhileSubscribed(5_000, 1))
 }

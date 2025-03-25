@@ -1,4 +1,4 @@
-package uk.co.mhl.timezonetracker.core.local
+package uk.co.mhl.timezonetracker.core.data.util
 
 import kotlinx.coroutines.flow.Flow
 import java.time.Instant

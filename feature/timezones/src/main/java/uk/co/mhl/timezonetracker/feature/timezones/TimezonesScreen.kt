@@ -71,7 +71,6 @@ private fun TimezonesScreenPreview() {
             currentTime = Instant.now(),
             savedTimezones = emptyList(),
             onNewTimezoneClick = { },
-            modifier = Modifier,
         )
     }
 }

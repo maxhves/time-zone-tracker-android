@@ -4,6 +4,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import kotlinx.serialization.Serializable
+import uk.co.mhl.timezonetracker.feature.addtimezone.AddTimezoneScreen
 
 //region Route
 
@@ -15,11 +16,13 @@ import kotlinx.serialization.Serializable
 //region Graph
 
 fun NavGraphBuilder.addTimezoneSection(
-    onTimezoneSelected: () -> Unit,
+    onCitySelected: () -> Unit,
 ) {
     navigation<AddTimezoneBaseRoute>(startDestination = AddTimezoneRoute) {
         composable<AddTimezoneRoute> {
-            // TODO: Include AddTimezoneScreen here.
+            AddTimezoneScreen(
+                onCitySelected = onCitySelected,
+            )
         }
     }
 }

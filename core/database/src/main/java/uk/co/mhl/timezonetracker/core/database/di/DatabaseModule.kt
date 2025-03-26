@@ -21,5 +21,7 @@ internal object DatabaseModule {
         context,
         TimezoneTrackerDatabase::class.java,
         "timezonetracker-database"
-    ).build()
+    )
+        .createFromAsset("city_timezone.db")
+        .build()
 }

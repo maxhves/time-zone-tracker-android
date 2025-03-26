@@ -8,5 +8,7 @@ android {
 }
 
 dependencies {
+    api(project(":core:database"))
+
     implementation(libs.kotlinx.coroutines.core)
 }

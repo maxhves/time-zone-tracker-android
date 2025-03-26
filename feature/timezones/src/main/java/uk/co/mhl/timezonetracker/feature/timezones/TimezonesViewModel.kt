@@ -35,6 +35,7 @@ class TimezonesViewModel @Inject constructor(
 
     // region Testing
 
+    // TODO: Remove testing code.
     init {
         viewModelScope.launch {
             cityRepository.observeAll().collect { cities ->
@@ -42,6 +43,7 @@ class TimezonesViewModel @Inject constructor(
             }
         }
     }
+    // TODO: Remove testing code.
 
     //endregion
 }

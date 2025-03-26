@@ -17,6 +17,7 @@ import uk.co.mhl.timezonetracker.feature.timezones.TimezonesScreen
 
 fun NavGraphBuilder.timezonesSection(
     onNewTimezoneClick: () -> Unit,
+    addTimezoneDestination: NavGraphBuilder.() -> Unit,
 ) {
     navigation<TimezonesBaseRoute>(startDestination = TimezonesRoute) {
         composable<TimezonesRoute> {
@@ -24,6 +25,7 @@ fun NavGraphBuilder.timezonesSection(
                 onNewTimezoneClick = onNewTimezoneClick,
             )
         }
+        addTimezoneDestination()
     }
 }
 

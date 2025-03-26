@@ -19,6 +19,7 @@ kotlin {
 
 dependencies {
     compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.androidx.room.gradlePlugin)
     compileOnly(libs.kotlin.gradlePlugin)
 }
 
@@ -50,6 +51,11 @@ gradlePlugin {
         register("hilt") {
             id = libs.plugins.timezonetracker.hilt.get().pluginId
             implementationClass = "HiltConventionPlugin"
+        }
+
+        register("room") {
+            id = libs.plugins.timezonetracker.room.get().pluginId
+            implementationClass = "AndroidRoomConventionPlugin"
         }
     }
 }

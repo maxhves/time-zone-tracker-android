@@ -12,4 +12,11 @@ data class LocalCity(
     val zoneId: String,
 )
 
-// TODO: Implement toExternal mapping for the external model.
+// TODO: Implement proper toExternal mapping for the external model.
+fun LocalCity.toExternal(): String {
+    return name
+}
+
+fun List<LocalCity>.toExternal(): List<String> {
+    return map(LocalCity::toExternal)
+}

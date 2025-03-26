@@ -27,6 +27,7 @@ android {
 
 dependencies {
     // Internal
+    implementation(project(":feature:addtimezone"))
     implementation(project(":feature:timezones"))
     implementation(project(":core:designsystem"))
 

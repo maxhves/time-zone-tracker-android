@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.timezonetracker.android.library)
     alias(libs.plugins.timezonetracker.hilt)
+    alias(libs.plugins.timezonetracker.room)
 }
 
 android {

@@ -27,9 +27,12 @@ android {
 
 dependencies {
     // Internal
+    implementation(project(":core:data"))
+    implementation(project(":core:designsystem"))
+    implementation(project(":core:model"))
+    implementation(project(":core:ui"))
     implementation(project(":feature:addtimezone"))
     implementation(project(":feature:timezones"))
-    implementation(project(":core:designsystem"))
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)

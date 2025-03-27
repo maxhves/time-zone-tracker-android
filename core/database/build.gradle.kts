@@ -7,3 +7,7 @@ plugins {
 android {
     namespace = "uk.co.mhl.timezonetracker.database"
 }
+
+dependencies {
+    api(project(":core:model"))
+}

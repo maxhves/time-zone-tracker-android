@@ -2,6 +2,7 @@ package uk.co.mhl.timezonetracker.core.database.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import uk.co.mhl.timezonetracker.core.model.City
 
 @Entity(tableName = "cities")
 data class LocalCity(
@@ -12,11 +13,15 @@ data class LocalCity(
     val zoneId: String,
 )
 
-// TODO: Implement proper toExternal mapping for the external model.
-fun LocalCity.toExternal(): String {
-    return name
+fun LocalCity.toExternal(): City {
+    return City(
+        id = id,
+        name = name,
+        country = country,
+        zoneId = zoneId,
+    )
 }
 
-fun List<LocalCity>.toExternal(): List<String> {
+fun List<LocalCity>.toExternal(): List<City> {
     return map(LocalCity::toExternal)
 }

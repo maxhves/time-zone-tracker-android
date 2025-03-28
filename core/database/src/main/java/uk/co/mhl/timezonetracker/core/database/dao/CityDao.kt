@@ -9,4 +9,7 @@ import uk.co.mhl.timezonetracker.core.database.model.LocalCity
 interface CityDao {
     @Query("SELECT * FROM cities")
     fun observeAll(): Flow<List<LocalCity>>
+
+    @Query("SELECT * FROM cities WHERE id IN (:ids)")
+    fun observeByIds(ids: Set<Int>): Flow<List<LocalCity>>
 }

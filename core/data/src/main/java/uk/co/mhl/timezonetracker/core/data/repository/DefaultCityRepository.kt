@@ -14,4 +14,8 @@ class DefaultCityRepository @Inject constructor(
     override fun observeAll(): Flow<List<City>> {
         return cityDataSource.observeAll().map(List<LocalCity>::toExternal)
     }
+
+    override fun observeByIds(ids: Set<Int>): Flow<List<City>> {
+        return cityDataSource.observeByIds(ids).map(List<LocalCity>::toExternal)
+    }
 }

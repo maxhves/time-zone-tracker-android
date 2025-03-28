@@ -38,7 +38,7 @@ class TimezonesViewModel @Inject constructor(
     // TODO: Remove testing code.
     init {
         viewModelScope.launch {
-            cityRepository.observeAll().collect { cities ->
+            cityRepository.observeByIds(setOf(1, 11, 111, 2, 22, 222, 3, 33, 333)).collect { cities ->
                 Log.i("TimezonesViewModel", cities.toString())
             }
         }

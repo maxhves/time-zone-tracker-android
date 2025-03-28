@@ -11,11 +11,11 @@ import javax.inject.Inject
 class DefaultCityRepository @Inject constructor(
     private val cityDataSource: CityDao,
 ) : CityRepository {
-    override fun observeAll(): Flow<List<City>> {
-        return cityDataSource.observeAll().map(List<LocalCity>::toExternal)
-    }
-
     override fun observeByIds(ids: Set<Int>): Flow<List<City>> {
         return cityDataSource.observeByIds(ids).map(List<LocalCity>::toExternal)
+    }
+
+    override suspend fun getAll(): List<City> {
+        return cityDataSource.getAll().map(LocalCity::toExternal)
     }
 }

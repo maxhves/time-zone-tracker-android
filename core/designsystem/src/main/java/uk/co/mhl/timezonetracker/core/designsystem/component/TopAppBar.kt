@@ -12,6 +12,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
 
+//region Top App Bar
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TimezoneTrackerTopAppBar(
@@ -36,3 +38,5 @@ private fun TimezoneTrackerTopAppBarPreview() {
         )
     }
 }
+
+//endregion

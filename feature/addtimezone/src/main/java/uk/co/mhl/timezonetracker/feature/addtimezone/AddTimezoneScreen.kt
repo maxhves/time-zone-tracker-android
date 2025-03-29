@@ -18,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
 import uk.co.mhl.timezonetracker.core.model.City
+import uk.co.mhl.timezonetracker.feature.addtimezone.component.AddTimezoneTopAppBar
 
 @Composable
 internal fun AddTimezoneScreen(
@@ -42,6 +43,7 @@ internal fun AddTimezoneScreen(
 ) {
     Scaffold(
         modifier = modifier,
+        topBar = { AddTimezoneTopAppBar(onCitySelected) }
     ) { innerPadding ->
         LazyColumn(
             modifier = modifier.padding(innerPadding),

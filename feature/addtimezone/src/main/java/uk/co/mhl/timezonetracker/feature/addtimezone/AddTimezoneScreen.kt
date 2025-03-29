@@ -1,11 +1,12 @@
 package uk.co.mhl.timezonetracker.feature.addtimezone
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,27 +40,33 @@ internal fun AddTimezoneScreen(
     onCitySelected: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    LazyColumn(
-        modifier = modifier.fillMaxSize(),
-    ) {
-        items(
-            items = cities,
-            key = { city -> city.id }
-        ) { city ->
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable(onClick = onCitySelected)
-                    .padding(16.dp),
-                text = "${city.name}, ${city.country}",
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
+    Scaffold(
+        modifier = modifier,
+    ) { innerPadding ->
+        LazyColumn(
+            modifier = modifier.padding(innerPadding),
+        ) {
+            items(
+                items = cities,
+                key = { city -> city.id }
+            ) { city ->
+                Text(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable(onClick = onCitySelected)
+                        .padding(16.dp),
+                    text = "${city.name}, ${city.country}",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
         }
     }
 }
 
-@Preview(showBackground = true)
+@Preview
 @Composable
 private fun AddTimezoneScreenPreview() {
     TimezoneTrackerTheme {

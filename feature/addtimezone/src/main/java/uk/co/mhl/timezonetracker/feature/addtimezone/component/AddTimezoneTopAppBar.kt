@@ -10,12 +10,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,10 +32,11 @@ internal fun AddTimezoneTopAppBar(
     TopAppBar(
         title = {
             TextField(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().heightIn(max = 56.dp),
                 value = searchQuery,
                 onValueChange = onSearchQueryChange,
                 placeholder = { Text(text = "Search") },
+                textStyle = MaterialTheme.typography.bodyLarge,
                 maxLines = 1,
                 singleLine = true,
             )

@@ -19,15 +19,18 @@ class AddTimezoneViewModel @Inject constructor(
 ) : ViewModel() {
     //region State
 
-    private val _filterState = MutableStateFlow("")
+    private val _searchQueryState = MutableStateFlow("")
     private val _citiesState = MutableStateFlow(emptyList<City>())
 
     val state = combine(
-        _filterState,
+        _searchQueryState,
         _citiesState
     ) { query, cities ->
         val filteredGroupedCities = cities.filterThenGroupAlphabetically(query)
-        AddTimezoneUiState(cities = filteredGroupedCities)
+        AddTimezoneUiState(
+            searchQuery = query,
+            cities = filteredGroupedCities
+        )
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
@@ -52,12 +55,24 @@ class AddTimezoneViewModel @Inject constructor(
 
     //endregion
 
+    //region Events
+
+    fun onSearchQueryChange(query: String) {
+        _searchQueryState.update { query }
+    }
+
+    //endregion
+
     //region Helper
 
     private fun List<City>.filterThenGroupAlphabetically(query: String): Map<Char, List<City>> {
-        return asSequence()
-            .filter { query.isBlank() || it.name.contains(query, ignoreCase = true) }
-            .groupBy { it.name.first().uppercaseChar() }
+        return if (query.isBlank()) {
+            groupBy { it.name.first().uppercaseChar() }
+        } else {
+            asSequence()
+                .filter { it.name.contains(query, ignoreCase = true) }
+                .groupBy { it.name.first().uppercaseChar() }
+        }
     }
 
     //endregion

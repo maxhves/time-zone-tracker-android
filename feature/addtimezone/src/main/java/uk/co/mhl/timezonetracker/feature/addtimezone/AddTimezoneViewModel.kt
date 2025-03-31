@@ -45,9 +45,6 @@ class AddTimezoneViewModel @Inject constructor(
 
     init {
         getAllCities()
-
-        // TODO: Remove sample filtering.
-        _filterState.update { "Los" }
     }
 
     private fun getAllCities() {

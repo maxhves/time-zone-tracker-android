@@ -29,14 +29,18 @@ import uk.co.mhl.timezonetracker.feature.addtimezone.component.AddTimezoneTopApp
 @Composable
 internal fun AddTimezoneScreen(
     onCitySelected: () -> Unit,
+    onBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: AddTimezoneViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.state.collectAsStateWithLifecycle()
 
     AddTimezoneScreen(
+        searchQuery = uiState.searchQuery,
+        onSearchQueryChange = viewModel::onSearchQueryChange,
         cities = uiState.cities,
         onCitySelected = onCitySelected,
+        onBack = onBack,
         modifier = modifier,
     )
 }
@@ -47,14 +51,24 @@ internal fun AddTimezoneScreen(
 )
 @Composable
 internal fun AddTimezoneScreen(
+    searchQuery: String,
+    onSearchQueryChange: (String) -> Unit,
     cities: Map<Char, List<City>>,
     onCitySelected: () -> Unit,
+    onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 
     Scaffold(
-        topBar = { AddTimezoneTopAppBar(onCitySelected, scrollBehavior = scrollBehavior) },
+        topBar = {
+            AddTimezoneTopAppBar(
+                searchQuery = searchQuery,
+                onSearchQueryChange = onSearchQueryChange,
+                onNavigateClick = onBack,
+                scrollBehavior = scrollBehavior
+            )
+        },
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
     ) { innerPadding ->
         LazyColumn(
@@ -102,11 +116,35 @@ internal fun AddTimezoneScreen(
 private fun AddTimezoneScreenPreview() {
     TimezoneTrackerTheme {
         AddTimezoneScreen(
+            searchQuery = "",
+            onSearchQueryChange = { },
             cities = mapOf(
-                'L' to listOf(City(id = 1, name = "London", country = "United Kingdom", zoneId = "Europe/London")),
-                'O' to listOf(City(id = 2, name = "Oslo", country = "Norway", zoneId = "Europe/Oslo")),
-                'T' to listOf(City(id = 3, name = "Toronto", country = "Canada", zoneId = "America/Toronto")),
+                'L' to listOf(
+                    City(
+                        id = 1,
+                        name = "London",
+                        country = "United Kingdom",
+                        zoneId = "Europe/London"
+                    )
+                ),
+                'O' to listOf(
+                    City(
+                        id = 2,
+                        name = "Oslo",
+                        country = "Norway",
+                        zoneId = "Europe/Oslo"
+                    )
+                ),
+                'T' to listOf(
+                    City(
+                        id = 3,
+                        name = "Toronto",
+                        country = "Canada",
+                        zoneId = "America/Toronto"
+                    )
+                ),
             ),
+            onBack = { },
             onCitySelected = { },
         )
     }

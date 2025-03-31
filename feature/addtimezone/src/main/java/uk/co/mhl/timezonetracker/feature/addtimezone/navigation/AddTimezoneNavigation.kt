@@ -26,10 +26,12 @@ fun NavController.navigateToAddTimezone(navOptions: NavOptionsBuilder.() -> Unit
 //region Graph
 
 fun NavGraphBuilder.addTimezoneSection(
+    onBack: () -> Unit,
     onCitySelected: () -> Unit,
 ) {
     composable<AddTimezoneRoute> {
         AddTimezoneScreen(
+            onBack = onBack,
             onCitySelected = onCitySelected,
         )
     }

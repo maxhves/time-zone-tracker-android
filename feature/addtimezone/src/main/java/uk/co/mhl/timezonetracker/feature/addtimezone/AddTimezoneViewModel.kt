@@ -26,13 +26,8 @@ class AddTimezoneViewModel @Inject constructor(
         _filterState,
         _citiesState
     ) { query, cities ->
-        val filteredCities = if (query.trim().isBlank()) {
-            cities
-        } else {
-            cities.filter { city -> city.name.contains(query, ignoreCase = true) }
-        }
-
-        AddTimezoneUiState(cities = filteredCities)
+        val filteredGroupedCities = cities.filterThenGroupAlphabetically(query)
+        AddTimezoneUiState(cities = filteredGroupedCities)
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
@@ -53,6 +48,16 @@ class AddTimezoneViewModel @Inject constructor(
                 cityRepository.getAll()
             }
         }
+    }
+
+    //endregion
+
+    //region Helper
+
+    private fun List<City>.filterThenGroupAlphabetically(query: String): Map<Char, List<City>> {
+        return asSequence()
+            .filter { query.isBlank() || it.name.contains(query, ignoreCase = true) }
+            .groupBy { it.name.first().uppercaseChar() }
     }
 
     //endregion

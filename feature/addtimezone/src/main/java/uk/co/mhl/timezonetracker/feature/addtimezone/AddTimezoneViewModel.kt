@@ -70,7 +70,7 @@ class AddTimezoneViewModel @Inject constructor(
             groupBy { it.name.first().uppercaseChar() }
         } else {
             asSequence()
-                .filter { it.name.contains(query, ignoreCase = true) }
+                .filter { "${it.name} ${it.country}".contains(query, ignoreCase = true) }
                 .groupBy { it.name.first().uppercaseChar() }
         }
     }

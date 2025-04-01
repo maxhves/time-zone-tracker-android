@@ -3,10 +3,10 @@ package uk.co.mhl.timezonetracker.feature.addtimezone
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -28,7 +28,7 @@ import uk.co.mhl.timezonetracker.feature.addtimezone.component.AddTimezoneTopApp
 
 @Composable
 internal fun AddTimezoneScreen(
-    onCitySelected: () -> Unit,
+    onCityClick: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: AddTimezoneViewModel = hiltViewModel(),
@@ -39,22 +39,19 @@ internal fun AddTimezoneScreen(
         searchQuery = uiState.searchQuery,
         onSearchQueryChange = viewModel::onSearchQueryChange,
         cities = uiState.cities,
-        onCitySelected = onCitySelected,
+        onCityClick = onCityClick,
         onBack = onBack,
         modifier = modifier,
     )
 }
 
-@OptIn(
-    ExperimentalMaterial3Api::class,
-    ExperimentalFoundationApi::class
-)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 internal fun AddTimezoneScreen(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
     cities: Map<Char, List<City>>,
-    onCitySelected: () -> Unit,
+    onCityClick: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -74,15 +71,14 @@ internal fun AddTimezoneScreen(
         LazyColumn(
             modifier = Modifier.padding(innerPadding),
         ) {
-            cities.forEach { (character, citiesForChar) ->
-                stickyHeader {
-                    Box(
-                        modifier = Modifier
-                            .background(MaterialTheme.colorScheme.background)
-                            .fillMaxWidth()
-                            .padding(16.dp, 8.dp),
-                    ) {
+            cities.forEach { (character, citiesForCharacter) ->
+                if (searchQuery.isBlank()) {
+                    stickyHeader {
                         Text(
+                            modifier = Modifier
+                                .background(MaterialTheme.colorScheme.background)
+                                .fillMaxWidth()
+                                .padding(16.dp, 8.dp),
                             text = "$character",
                             style = MaterialTheme.typography.labelMedium,
                             color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.75f)
@@ -91,13 +87,13 @@ internal fun AddTimezoneScreen(
                 }
 
                 items(
-                    items = citiesForChar,
+                    items = citiesForCharacter,
                     key = { city -> city.id }
                 ) { city ->
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable(onClick = onCitySelected)
+                            .clickable(onClick = onCityClick)
                             .padding(16.dp),
                         text = "${city.name}, ${city.country}",
                         style = MaterialTheme.typography.bodyMedium,
@@ -145,7 +141,7 @@ private fun AddTimezoneScreenPreview() {
                 ),
             ),
             onBack = { },
-            onCitySelected = { },
+            onCityClick = { },
         )
     }
 }

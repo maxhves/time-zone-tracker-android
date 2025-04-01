@@ -25,7 +25,7 @@ fun TimezoneTrackerNavHost(
         ) {
             addTimezoneSection(
                 onBack = navController::popBackStack,
-                onCitySelected = navController::popBackStack
+                onCityClick = navController::popBackStack
             )
         }
     }

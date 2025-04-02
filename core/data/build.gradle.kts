@@ -11,4 +11,6 @@ dependencies {
     api(project(":core:database"))
 
     implementation(libs.kotlinx.coroutines.core)
+
+    testImplementation(libs.kotlinx.coroutines.test)
 }

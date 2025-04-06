@@ -9,6 +9,7 @@ android {
 
 dependencies {
     api(project(":core:database"))
+    api(project(":core:datastore"))
 
     implementation(libs.kotlinx.coroutines.core)
 

@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message TimeZonePreferences {
+  repeated int32 tracked_zone_ids = 1;
+}

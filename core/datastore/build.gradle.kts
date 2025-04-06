@@ -13,6 +13,7 @@ android {
 
 protobuf {
     protoc {
+        artifact = libs.protobuf.protoc.get().toString()
     }
 
     generateProtoTasks {

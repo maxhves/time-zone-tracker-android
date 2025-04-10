@@ -7,7 +7,9 @@ import dagger.hilt.components.SingletonComponent
 import uk.co.mhl.timezonetracker.core.data.repository.CityRepository
 import uk.co.mhl.timezonetracker.core.data.repository.CurrentTimeRepository
 import uk.co.mhl.timezonetracker.core.data.repository.DefaultCityRepository
+import uk.co.mhl.timezonetracker.core.data.repository.OfflineFirstTimeZoneDataRepository
 import uk.co.mhl.timezonetracker.core.data.repository.TimeRepository
+import uk.co.mhl.timezonetracker.core.data.repository.TimeZoneDataRepository
 import uk.co.mhl.timezonetracker.core.data.util.TimeTickBroadcastMonitor
 import uk.co.mhl.timezonetracker.core.data.util.TimeTickMonitor
 
@@ -28,4 +30,9 @@ abstract class DataModule {
     internal abstract fun bindsCityRepository(
         defaultCityRepository: DefaultCityRepository
     ): CityRepository
+
+    @Binds
+    internal abstract fun bindsTimeZoneDataRepository(
+        offlineFirstTimeZoneDataRepository: OfflineFirstTimeZoneDataRepository,
+    ): TimeZoneDataRepository
 }

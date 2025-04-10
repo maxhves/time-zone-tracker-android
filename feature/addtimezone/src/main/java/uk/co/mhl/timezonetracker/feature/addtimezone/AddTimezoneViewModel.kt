@@ -10,12 +10,14 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import uk.co.mhl.timezonetracker.core.data.repository.CityRepository
+import uk.co.mhl.timezonetracker.core.data.repository.TimeZoneDataRepository
 import uk.co.mhl.timezonetracker.core.model.City
 import javax.inject.Inject
 
 @HiltViewModel
 class AddTimezoneViewModel @Inject constructor(
     private val cityRepository: CityRepository,
+    private val timeZoneDataRepository: TimeZoneDataRepository,
 ) : ViewModel() {
     //region State
 
@@ -59,6 +61,13 @@ class AddTimezoneViewModel @Inject constructor(
 
     fun onSearchQueryChange(query: String) {
         _searchQueryState.update { query }
+    }
+
+    fun onCityClick(city: City) {
+        viewModelScope.launch {
+            timeZoneDataRepository.setZoneIdTracked(zoneId = city.id, tracked = true)
+            // TODO: Notify UI of set tracked completion.
+        }
     }
 
     //endregion

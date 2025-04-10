@@ -95,7 +95,7 @@ private val DarkColorScheme = darkColorScheme(
 //endregion
 
 @Composable
-fun TimezoneTrackerTheme(
+fun TimeZoneTrackerTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit

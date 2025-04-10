@@ -1,7 +1,7 @@
 <resources>
     <!-- region Screen -->
 
-    <string name="timezones_screen_title">Timezones</string>
+    <string name="timezones_screen_title">Time Zones</string>
 
     <!-- endregion -->
 

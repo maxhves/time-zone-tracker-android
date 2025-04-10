@@ -5,18 +5,18 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.compose.composable
 import kotlinx.serialization.Serializable
-import uk.co.mhl.timezonetracker.feature.addtimezone.AddTimezoneScreen
+import uk.co.mhl.timezonetracker.feature.addtimezone.AddTimeZoneScreen
 
 //region Route
 
-@Serializable data object AddTimezoneRoute
+@Serializable data object AddTimeZoneRoute
 
 //endregion
 
 //region Navigation
 
-fun NavController.navigateToAddTimezone(navOptions: NavOptionsBuilder.() -> Unit = {}) {
-    navigate(route = AddTimezoneRoute) {
+fun NavController.navigateToAddTimeZone(navOptions: NavOptionsBuilder.() -> Unit = {}) {
+    navigate(route = AddTimeZoneRoute) {
         navOptions()
     }
 }
@@ -25,12 +25,12 @@ fun NavController.navigateToAddTimezone(navOptions: NavOptionsBuilder.() -> Unit
 
 //region Graph
 
-fun NavGraphBuilder.addTimezoneSection(
+fun NavGraphBuilder.addTimeZoneSection(
     onBack: () -> Unit,
     onCityClick: () -> Unit,
 ) {
-    composable<AddTimezoneRoute> {
-        AddTimezoneScreen(
+    composable<AddTimeZoneRoute> {
+        AddTimeZoneScreen(
             onBack = onBack,
             onCityClick = onCityClick,
         )

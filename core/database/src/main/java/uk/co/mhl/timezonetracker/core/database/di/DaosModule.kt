@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import uk.co.mhl.timezonetracker.core.database.TimezoneTrackerDatabase
+import uk.co.mhl.timezonetracker.core.database.TimeZoneTrackerDatabase
 import uk.co.mhl.timezonetracker.core.database.dao.CityDao
 
 @Module
@@ -12,6 +12,6 @@ import uk.co.mhl.timezonetracker.core.database.dao.CityDao
 internal object DaosModule {
     @Provides
     fun providesCityDao(
-        database: TimezoneTrackerDatabase
+        database: TimeZoneTrackerDatabase
     ): CityDao = database.cityDao()
 }

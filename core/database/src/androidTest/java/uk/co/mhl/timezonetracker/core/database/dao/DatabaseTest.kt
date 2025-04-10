@@ -5,11 +5,11 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import org.junit.After
 import org.junit.Before
-import uk.co.mhl.timezonetracker.core.database.TimezoneTrackerDatabase
+import uk.co.mhl.timezonetracker.core.database.TimeZoneTrackerDatabase
 
 internal abstract class DatabaseTest {
 
-    private lateinit var database: TimezoneTrackerDatabase
+    private lateinit var database: TimeZoneTrackerDatabase
     protected lateinit var cityDao: CityDao
 
     @Before
@@ -19,7 +19,7 @@ internal abstract class DatabaseTest {
 
             Room.databaseBuilder(
                 context,
-                TimezoneTrackerDatabase::class.java,
+                TimeZoneTrackerDatabase::class.java,
                 "test-timezone-tracker-database"
             )
                 .createFromAsset("city_timezone.db")

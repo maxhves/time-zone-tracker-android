@@ -10,13 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
+import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
 
 //region Top App Bar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TimezoneTrackerTopAppBar(
+fun TimeZoneTrackerTopAppBar(
     @StringRes titleRes: Int,
     modifier: Modifier = Modifier,
     colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
@@ -31,9 +31,9 @@ fun TimezoneTrackerTopAppBar(
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-private fun TimezoneTrackerTopAppBarPreview() {
-    TimezoneTrackerTheme {
-        TimezoneTrackerTopAppBar(
+private fun TimeZoneTrackerTopAppBarPreview() {
+    TimeZoneTrackerTheme {
+        TimeZoneTrackerTopAppBar(
             titleRes = android.R.string.untitled,
         )
     }

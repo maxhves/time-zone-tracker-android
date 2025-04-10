@@ -4,28 +4,28 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import kotlinx.serialization.Serializable
-import uk.co.mhl.timezonetracker.feature.timezones.TimezonesScreen
+import uk.co.mhl.timezonetracker.feature.timezones.TimeZonesScreen
 
 //region Route
 
-@Serializable data object TimezonesRoute
-@Serializable data object TimezonesBaseRoute
+@Serializable data object TimeZonesRoute
+@Serializable data object TimeZonesBaseRoute
 
 //endregion
 
 //region Graph
 
-fun NavGraphBuilder.timezonesSection(
-    onNewTimezoneClick: () -> Unit,
-    addTimezoneDestination: NavGraphBuilder.() -> Unit,
+fun NavGraphBuilder.timeZonesSection(
+    onNewTimeZoneClick: () -> Unit,
+    addTimeZoneDestination: NavGraphBuilder.() -> Unit,
 ) {
-    navigation<TimezonesBaseRoute>(startDestination = TimezonesRoute) {
-        composable<TimezonesRoute> {
-            TimezonesScreen(
-                onNewTimezoneClick = onNewTimezoneClick,
+    navigation<TimeZonesBaseRoute>(startDestination = TimeZonesRoute) {
+        composable<TimeZonesRoute> {
+            TimeZonesScreen(
+                onNewTimeZoneClick = onNewTimeZoneClick,
             )
         }
-        addTimezoneDestination()
+        addTimeZoneDestination()
     }
 }
 

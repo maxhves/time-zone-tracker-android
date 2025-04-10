@@ -19,20 +19,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
+import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
 import uk.co.mhl.timezonetracker.core.model.City
-import uk.co.mhl.timezonetracker.feature.addtimezone.component.AddTimezoneTopAppBar
+import uk.co.mhl.timezonetracker.feature.addtimezone.component.AddTimeZoneTopAppBar
 
 @Composable
-internal fun AddTimezoneScreen(
+internal fun AddTimeZoneScreen(
     onCityClick: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: AddTimezoneViewModel = hiltViewModel(),
+    viewModel: AddTimeZoneViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.state.collectAsStateWithLifecycle()
 
-    AddTimezoneScreen(
+    AddTimeZoneScreen(
         searchQuery = uiState.searchQuery,
         onSearchQueryChange = viewModel::onSearchQueryChange,
         cities = uiState.cities,
@@ -44,7 +44,7 @@ internal fun AddTimezoneScreen(
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-internal fun AddTimezoneScreen(
+internal fun AddTimeZoneScreen(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
     cities: Map<Char, List<City>>,
@@ -54,7 +54,7 @@ internal fun AddTimezoneScreen(
 ) {
     Scaffold(
         topBar = {
-            AddTimezoneTopAppBar(
+            AddTimeZoneTopAppBar(
                 searchQuery = searchQuery,
                 onSearchQueryChange = onSearchQueryChange,
                 onNavigateClick = onBack,
@@ -103,9 +103,9 @@ internal fun AddTimezoneScreen(
 
 @Preview
 @Composable
-private fun AddTimezoneScreenPreview() {
-    TimezoneTrackerTheme {
-        AddTimezoneScreen(
+private fun AddTimeZoneScreenPreview() {
+    TimeZoneTrackerTheme {
+        AddTimeZoneScreen(
             searchQuery = "",
             onSearchQueryChange = { },
             cities = mapOf(

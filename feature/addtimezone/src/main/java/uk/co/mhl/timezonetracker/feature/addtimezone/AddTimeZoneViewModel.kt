@@ -56,6 +56,7 @@ class AddTimeZoneViewModel @Inject constructor(
         getAllCities()
     }
 
+    // TODO: Replace this functionality into a better flow, I don't like it.
     private fun getAllCities() {
         viewModelScope.launch {
             _citiesState.update {

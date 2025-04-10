@@ -10,6 +10,6 @@ import uk.co.mhl.timezonetracker.core.database.model.LocalCity
     version = 1,
     exportSchema = true
 )
-internal abstract class TimezoneTrackerDatabase : RoomDatabase() {
+internal abstract class TimeZoneTrackerDatabase : RoomDatabase() {
     abstract fun cityDao(): CityDao
 }

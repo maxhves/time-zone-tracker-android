@@ -15,7 +15,7 @@ import uk.co.mhl.timezonetracker.core.model.City
 import javax.inject.Inject
 
 @HiltViewModel
-class AddTimezoneViewModel @Inject constructor(
+class AddTimeZoneViewModel @Inject constructor(
     private val cityRepository: CityRepository,
     private val userDataRepository: UserDataRepository,
 ) : ViewModel() {
@@ -29,14 +29,14 @@ class AddTimezoneViewModel @Inject constructor(
         _citiesState
     ) { query, cities ->
         val filteredGroupedCities = cities.filterThenGroupAlphabetically(query)
-        AddTimezoneUiState(
+        AddTimeZoneUiState(
             searchQuery = query,
             cities = filteredGroupedCities
         )
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
-        initialValue = AddTimezoneUiState(),
+        initialValue = AddTimeZoneUiState(),
     )
 
     //endregion

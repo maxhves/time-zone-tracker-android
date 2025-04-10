@@ -12,13 +12,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
+import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
 import uk.co.mhl.timezonetracker.core.ui.zonedDateFormatted
 import java.time.Instant
 import java.time.ZoneId
 
 @Composable
-internal fun SavedTimezoneItem(
+internal fun SavedTimeZoneItem(
     modifier: Modifier = Modifier,
     cityName: String,
     offset: Int,
@@ -58,9 +58,9 @@ internal fun SavedTimezoneItem(
 
 @Preview(showBackground = true)
 @Composable
-private fun SavedTimezoneItemPreview() {
-    TimezoneTrackerTheme {
-        SavedTimezoneItem(
+private fun SavedTimeZoneItemPreview() {
+    TimeZoneTrackerTheme {
+        SavedTimeZoneItem(
             cityName = "Toronto",
             offset = -5,
             currentTime = Instant.now(),

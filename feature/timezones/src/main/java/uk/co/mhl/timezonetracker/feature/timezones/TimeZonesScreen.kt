@@ -11,50 +11,50 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import uk.co.mhl.timezonetracker.core.designsystem.component.TimezoneTrackerTopAppBar
-import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
+import uk.co.mhl.timezonetracker.core.designsystem.component.TimeZoneTrackerTopAppBar
+import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
 import uk.co.mhl.timezonetracker.feature.timezones.component.LocalTimeDisplay
-import uk.co.mhl.timezonetracker.feature.timezones.component.NewTimezoneFloatingActionButton
-import uk.co.mhl.timezonetracker.feature.timezones.component.SavedTimezoneItem
+import uk.co.mhl.timezonetracker.feature.timezones.component.NewTimeZoneFloatingActionButton
+import uk.co.mhl.timezonetracker.feature.timezones.component.SavedTimeZoneItem
 import java.time.Instant
 
 @Composable
-internal fun TimezonesScreen(
-    onNewTimezoneClick: () -> Unit,
+internal fun TimeZonesScreen(
+    onNewTimeZoneClick: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: TimezonesViewModel = hiltViewModel(),
+    viewModel: TimeZonesViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.state.collectAsStateWithLifecycle()
 
-    TimezonesScreen(
+    TimeZonesScreen(
         currentTime = uiState.currentTime,
-        savedTimezones = emptyList(),
-        onNewTimezoneClick = onNewTimezoneClick,
+        savedTimeZones = emptyList(),
+        onNewTimeZoneClick = onNewTimeZoneClick,
         modifier = modifier,
     )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun TimezonesScreen(
+internal fun TimeZonesScreen(
     currentTime: Instant,
-    savedTimezones: List<String>,
-    onNewTimezoneClick: () -> Unit,
+    savedTimeZones: List<String>,
+    onNewTimeZoneClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
         modifier = modifier,
         topBar = {
-            TimezoneTrackerTopAppBar(titleRes = R.string.timezones_screen_title)
+            TimeZoneTrackerTopAppBar(titleRes = R.string.timezones_screen_title)
         },
-        floatingActionButton = { NewTimezoneFloatingActionButton(onClick = onNewTimezoneClick) },
+        floatingActionButton = { NewTimeZoneFloatingActionButton(onClick = onNewTimeZoneClick) },
         floatingActionButtonPosition = FabPosition.Center,
     ) { innerPadding ->
         Column(
             modifier = Modifier.padding(innerPadding),
         ) {
             LocalTimeDisplay(currentTime = currentTime)
-            SavedTimezoneItem(
+            SavedTimeZoneItem(
                 cityName = "Toronto",
                 offset = -5,
                 currentTime = currentTime,
@@ -65,12 +65,12 @@ internal fun TimezonesScreen(
 
 @Preview
 @Composable
-private fun TimezonesScreenPreview() {
-    TimezoneTrackerTheme {
-        TimezonesScreen(
+private fun TimeZonesScreenPreview() {
+    TimeZoneTrackerTheme {
+        TimeZonesScreen(
             currentTime = Instant.now(),
-            savedTimezones = emptyList(),
-            onNewTimezoneClick = { },
+            savedTimeZones = emptyList(),
+            onNewTimeZoneClick = { },
         )
     }
 }

@@ -7,7 +7,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import uk.co.mhl.timezonetracker.core.database.TimezoneTrackerDatabase
+import uk.co.mhl.timezonetracker.core.database.TimeZoneTrackerDatabase
 import javax.inject.Singleton
 
 @Module
@@ -15,12 +15,12 @@ import javax.inject.Singleton
 internal object DatabaseModule {
     @Provides
     @Singleton
-    fun providesTimezoneTrackerDatabase(
+    fun providesTimeZoneTrackerDatabase(
         @ApplicationContext context: Context
-    ): TimezoneTrackerDatabase = Room.databaseBuilder(
+    ): TimeZoneTrackerDatabase = Room.databaseBuilder(
         context,
-        TimezoneTrackerDatabase::class.java,
-        "timezonetracker-database"
+        TimeZoneTrackerDatabase::class.java,
+        "tzt-database"
     )
         .createFromAsset("city_timezone.db")
         .build()

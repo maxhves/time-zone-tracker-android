@@ -11,28 +11,29 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
+import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
 
 @Composable
-internal fun NewTimezoneFloatingActionButton(
+internal fun NewTimeZoneFloatingActionButton(
     onClick: () -> Unit,
 ) {
     ExtendedFloatingActionButton(
         onClick = onClick,
         icon = { Icon(Icons.Rounded.Add, "") },
-        text = { Text(text = "New Timezone") },
+        // TODO: Abstract string into strings file.
+        text = { Text(text = "New Time Zone") },
     )
 }
 
 @Preview
 @Composable
-private fun NewTimezoneFloatingActionButtonPreview() {
-    TimezoneTrackerTheme {
+private fun NewTimeZoneFloatingActionButtonPreview() {
+    TimeZoneTrackerTheme {
         Box(
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center,
         ) {
-            NewTimezoneFloatingActionButton { }
+            NewTimeZoneFloatingActionButton { }
         }
     }
 }

@@ -28,12 +28,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import uk.co.mhl.timezonetracker.core.designsystem.theme.TimezoneTrackerTheme
+import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
 import uk.co.mhl.timezonetracker.feature.addtimezone.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun AddTimezoneTopAppBar(
+internal fun AddTimeZoneTopAppBar(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
     onNavigateClick: () -> Unit,
@@ -111,9 +111,9 @@ private fun SearchTextField(
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
-private fun AddTimezoneTopAppBarPreview() {
-    TimezoneTrackerTheme {
-        AddTimezoneTopAppBar(
+private fun AddTimeZoneTopAppBarPreview() {
+    TimeZoneTrackerTheme {
+        AddTimeZoneTopAppBar(
             searchQuery = "",
             onSearchQueryChange = { },
             onNavigateClick = { }

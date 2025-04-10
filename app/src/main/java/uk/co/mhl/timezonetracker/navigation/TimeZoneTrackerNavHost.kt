@@ -5,25 +5,25 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import uk.co.mhl.timezonetracker.feature.addtimezone.navigation.addTimezoneSection
-import uk.co.mhl.timezonetracker.feature.addtimezone.navigation.navigateToAddTimezone
-import uk.co.mhl.timezonetracker.feature.timezones.navigation.TimezonesBaseRoute
-import uk.co.mhl.timezonetracker.feature.timezones.navigation.timezonesSection
+import uk.co.mhl.timezonetracker.feature.addtimezone.navigation.addTimeZoneSection
+import uk.co.mhl.timezonetracker.feature.addtimezone.navigation.navigateToAddTimeZone
+import uk.co.mhl.timezonetracker.feature.timezones.navigation.TimeZonesBaseRoute
+import uk.co.mhl.timezonetracker.feature.timezones.navigation.timeZonesSection
 
 @Composable
-fun TimezoneTrackerNavHost(
+fun TimeZoneTrackerNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
 ) {
     NavHost(
         navController = navController,
-        startDestination = TimezonesBaseRoute,
+        startDestination = TimeZonesBaseRoute,
         modifier = modifier,
     ) {
-        timezonesSection(
-            onNewTimezoneClick = navController::navigateToAddTimezone
+        timeZonesSection(
+            onNewTimeZoneClick = navController::navigateToAddTimeZone
         ) {
-            addTimezoneSection(
+            addTimeZoneSection(
                 onBack = navController::popBackStack,
                 onCityClick = navController::popBackStack
             )

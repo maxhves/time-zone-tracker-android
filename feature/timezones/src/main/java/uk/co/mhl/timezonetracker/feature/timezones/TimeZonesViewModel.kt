@@ -14,21 +14,21 @@ import uk.co.mhl.timezonetracker.core.data.repository.TimeRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class TimezonesViewModel @Inject constructor(
+class TimeZonesViewModel @Inject constructor(
     currentTimeRepository: TimeRepository,
     cityRepository: CityRepository,
 ) : ViewModel() {
     //region State
 
-    val state: StateFlow<TimezonesUiState> = currentTimeRepository
+    val state: StateFlow<TimeZonesUiState> = currentTimeRepository
         .getCurrentTime()
         .map {
-            TimezonesUiState(currentTime = it)
+            TimeZonesUiState(currentTime = it)
         }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000),
-            initialValue = TimezonesUiState(),
+            initialValue = TimeZonesUiState(),
         )
 
     //endregion
@@ -39,7 +39,7 @@ class TimezonesViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             cityRepository.observeByIds(setOf(1, 11, 111, 2, 22, 222, 3, 33, 333)).collect { cities ->
-                Log.i("TimezonesViewModel", cities.toString())
+                Log.i("TimeZonesViewModel", cities.toString())
             }
         }
     }

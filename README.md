@@ -1,2 +1,2 @@
-# timezone-tracker-android
-A timezone tracking application, built with Kotlin, Compose, Coroutines ++
+# time-zone-tracker-android
+A time zone tracking application, built with Kotlin, Compose, Coroutines ++

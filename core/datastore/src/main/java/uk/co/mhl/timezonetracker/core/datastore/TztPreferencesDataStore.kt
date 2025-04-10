@@ -7,34 +7,34 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class TimezoneTrackerPreferencesDataSource @Inject constructor(
-    private val timeZonePreferences: DataStore<TimeZonePreferences>,
+class TztPreferencesDataStore @Inject constructor(
+    private val userPreferences: DataStore<UserPreferences>,
 ) {
     //region Get
 
-    fun observeTrackedZoneIds(): Flow<Set<Int>> {
-        return timeZonePreferences.data.map { data -> data.trackedZoneIdsMap.keys }
+    fun observeTrackedCityIds(): Flow<Set<Int>> {
+        return userPreferences.data.map { data -> data.trackedCityIdsMap.keys }
     }
 
     //endregion
 
     //region Set
 
-    suspend fun setZoneIdTracked(zoneId: Int, tracked: Boolean) {
+    suspend fun setCityIdTracked(cityId: Int, tracked: Boolean) {
         try {
-            timeZonePreferences.updateData { data ->
+            userPreferences.updateData { data ->
                 data.copy {
                     if (tracked) {
-                        trackedZoneIds.put(zoneId, true)
+                        trackedCityIds.put(cityId, true)
                     } else {
-                        trackedZoneIds.remove(zoneId)
+                        trackedCityIds.remove(cityId)
                     }
                 }
             }
         } catch (ioException: IOException) {
             Log.e(
                 "TimeZoneTrackerPreferences",
-                "Failed to update time zone preferences",
+                "Failed to update user preferences",
                 ioException
             )
         }

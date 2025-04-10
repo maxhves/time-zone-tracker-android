@@ -11,8 +11,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import uk.co.mhl.timezonetracker.core.datastore.TimeZonePreferences
-import uk.co.mhl.timezonetracker.core.datastore.TimeZonePreferencesSerializer
+import uk.co.mhl.timezonetracker.core.datastore.UserPreferencesSerializer
+import uk.co.mhl.timezonetracker.core.datastore.UserPreferences
 import javax.inject.Singleton
 
 @Module
@@ -21,14 +21,14 @@ object DataStoreModule {
 
     @Provides
     @Singleton
-    internal fun providesTimeZonePreferencesDataStore(
+    internal fun providesTztPreferencesDataStore(
         @ApplicationContext context: Context,
-        timeZonePreferencesSerializer: TimeZonePreferencesSerializer,
-    ): DataStore<TimeZonePreferences> =
+        userPreferencesSerializer: UserPreferencesSerializer,
+    ): DataStore<UserPreferences> =
         DataStoreFactory.create(
-            serializer = timeZonePreferencesSerializer,
+            serializer = userPreferencesSerializer,
             scope = CoroutineScope(CoroutineScope(Dispatchers.Default).coroutineContext + Dispatchers.IO),
         ) {
-            context.dataStoreFile("time_zone_preferences.pb")
+            context.dataStoreFile("tzt_preferences.pb")
         }
 }

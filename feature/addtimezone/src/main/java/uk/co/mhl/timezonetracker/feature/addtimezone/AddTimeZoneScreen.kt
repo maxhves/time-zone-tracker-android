@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
@@ -19,24 +20,33 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.flow.collect
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
 import uk.co.mhl.timezonetracker.core.model.City
 import uk.co.mhl.timezonetracker.feature.addtimezone.component.AddTimeZoneTopAppBar
 
 @Composable
 internal fun AddTimeZoneScreen(
-    onCityClick: () -> Unit,
+    onCityTracked: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: AddTimeZoneViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.state.collectAsStateWithLifecycle()
 
+    LaunchedEffect(Unit) {
+        viewModel.effects.collect { effect ->
+            when (effect) {
+                OnCityTracked -> onCityTracked.invoke()
+            }
+        }
+    }
+
     AddTimeZoneScreen(
         searchQuery = uiState.searchQuery,
         onSearchQueryChange = viewModel::onSearchQueryChange,
         cities = uiState.cities,
-        onCityClick = onCityClick,
+        onCityClick = viewModel::onCityClick,
         onBack = onBack,
         modifier = modifier,
     )
@@ -48,7 +58,7 @@ internal fun AddTimeZoneScreen(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
     cities: Map<Char, List<City>>,
-    onCityClick: () -> Unit,
+    onCityClick: (City) -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -87,7 +97,7 @@ internal fun AddTimeZoneScreen(
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable(onClick = onCityClick)
+                            .clickable(onClick = { onCityClick(city) })
                             .padding(16.dp),
                         text = "${city.name}, ${city.country}",
                         style = MaterialTheme.typography.bodyMedium,

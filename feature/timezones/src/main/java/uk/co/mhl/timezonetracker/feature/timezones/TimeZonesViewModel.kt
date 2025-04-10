@@ -11,12 +11,14 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import uk.co.mhl.timezonetracker.core.data.repository.CityRepository
 import uk.co.mhl.timezonetracker.core.data.repository.TimeRepository
+import uk.co.mhl.timezonetracker.core.data.repository.UserDataRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class TimeZonesViewModel @Inject constructor(
     currentTimeRepository: TimeRepository,
     cityRepository: CityRepository,
+    userDataRepository: UserDataRepository,
 ) : ViewModel() {
     //region State
 
@@ -39,7 +41,12 @@ class TimeZonesViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             cityRepository.observeByIds(setOf(1, 11, 111, 2, 22, 222, 3, 33, 333)).collect { cities ->
-                Log.i("TimeZonesViewModel", cities.toString())
+                Log.i("TZVM_StoredCities", cities.toString())
+            }
+        }
+        viewModelScope.launch {
+            userDataRepository.observeTrackedCityIds().collect { cityIds ->
+                Log.i("TZVM_TrackedCities", cityIds.toString())
             }
         }
     }

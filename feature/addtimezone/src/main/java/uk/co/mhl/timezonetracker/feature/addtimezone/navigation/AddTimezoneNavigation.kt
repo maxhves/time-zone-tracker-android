@@ -27,12 +27,12 @@ fun NavController.navigateToAddTimeZone(navOptions: NavOptionsBuilder.() -> Unit
 
 fun NavGraphBuilder.addTimeZoneSection(
     onBack: () -> Unit,
-    onCityClick: () -> Unit,
+    onCityTracked: () -> Unit,
 ) {
     composable<AddTimeZoneRoute> {
         AddTimeZoneScreen(
             onBack = onBack,
-            onCityClick = onCityClick,
+            onCityTracked = onCityTracked,
         )
     }
 }

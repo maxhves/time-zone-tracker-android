@@ -3,8 +3,10 @@ package uk.co.mhl.timezonetracker.feature.addtimezone
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -41,6 +43,13 @@ class AddTimeZoneViewModel @Inject constructor(
 
     //endregion
 
+    //region Effects
+
+    private val _effects = MutableSharedFlow<AddTimeZoneViewEffect>()
+    val effects = _effects.asSharedFlow()
+
+    //endregion
+
     //region Initialization
 
     init {
@@ -66,7 +75,7 @@ class AddTimeZoneViewModel @Inject constructor(
     fun onCityClick(city: City) {
         viewModelScope.launch {
             userDataRepository.setCityIdTracked(cityId = city.id, tracked = true)
-            // TODO: Notify UI of set tracked completion.
+            _effects.emit(OnCityTracked)
         }
     }
 

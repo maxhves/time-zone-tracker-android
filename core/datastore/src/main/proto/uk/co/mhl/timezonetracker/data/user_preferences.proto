@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option java_package = "uk.co.mhl.timezonetracker.core.datastore";
+option java_multiple_files = true;
+
+message UserPreferences {
+  // Ensure ID uniqueness via map keys, since set does not exist.
+  map<int32, bool> tracked_city_ids = 1;
+}

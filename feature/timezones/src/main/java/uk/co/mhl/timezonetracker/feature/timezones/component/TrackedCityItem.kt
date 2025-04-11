@@ -18,13 +18,13 @@ import java.time.Instant
 import java.time.ZoneId
 
 @Composable
-internal fun SavedTimeZoneItem(
+internal fun TrackedCityItem(
     modifier: Modifier = Modifier,
-    cityName: String,
-    offset: Int,
     currentTime: Instant,
+    city: String,
+    zoneId: String,
 ) {
-    val zonedDateFormatted = zonedDateFormatted(currentTime, ZoneId.of("America/Toronto"))
+    val zonedDateFormatted = zonedDateFormatted(currentTime, ZoneId.of(zoneId))
 
     Column(
         modifier = modifier
@@ -33,7 +33,7 @@ internal fun SavedTimeZoneItem(
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
-            text = cityName,
+            text = city,
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onBackground.copy(alpha = .75f)
         )
@@ -47,23 +47,24 @@ internal fun SavedTimeZoneItem(
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.onBackground,
             )
-            Text(
-                text = "$offset",
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onBackground.copy(alpha = .5f)
-            )
+            // TODO: Uncomment when we know how to achieve an offset.
+            // Text(
+            //     text = "-5",
+            //     style = MaterialTheme.typography.bodySmall,
+            //     color = MaterialTheme.colorScheme.onBackground.copy(alpha = .5f)
+            // )
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-private fun SavedTimeZoneItemPreview() {
+private fun TrackedCityItemPreview() {
     TimeZoneTrackerTheme {
-        SavedTimeZoneItem(
-            cityName = "Toronto",
-            offset = -5,
+        TrackedCityItem(
             currentTime = Instant.now(),
+            city = "Toronto",
+            zoneId = "America/Toronto",
         )
     }
 }

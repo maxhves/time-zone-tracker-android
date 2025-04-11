@@ -7,12 +7,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import uk.co.mhl.timezonetracker.core.designsystem.component.TimeZoneTrackerTopAppBar
@@ -20,7 +18,7 @@ import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
 import uk.co.mhl.timezonetracker.core.model.City
 import uk.co.mhl.timezonetracker.feature.timezones.component.LocalTimeDisplay
 import uk.co.mhl.timezonetracker.feature.timezones.component.NewTimeZoneFloatingActionButton
-import uk.co.mhl.timezonetracker.feature.timezones.component.SavedTimeZoneItem
+import uk.co.mhl.timezonetracker.feature.timezones.component.TrackedCityItem
 import java.time.Instant
 
 @Composable
@@ -58,21 +56,19 @@ internal fun TimeZonesScreen(
         Column(
             modifier = Modifier.padding(innerPadding),
         ) {
-            // TODO: Properly show SavedTimeZoneItems.
             LocalTimeDisplay(currentTime = currentTime)
             LazyColumn {
-                items(trackedCities) { city ->
-                    Text(
-                        modifier = Modifier.padding(16.dp),
-                        text = city.name
+                items(
+                    items = trackedCities,
+                    key = { city -> city.id },
+                ) { city ->
+                    TrackedCityItem(
+                        currentTime = currentTime,
+                        city = city.name,
+                        zoneId = city.zoneId,
                     )
                 }
             }
-//            SavedTimeZoneItem(
-//                cityName = "Toronto",
-//                offset = -5,
-//                currentTime = currentTime,
-//            )
         }
     }
 }

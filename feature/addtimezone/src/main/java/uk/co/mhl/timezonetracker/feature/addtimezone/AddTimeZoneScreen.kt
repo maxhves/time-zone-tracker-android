@@ -20,7 +20,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import kotlinx.coroutines.flow.collect
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
 import uk.co.mhl.timezonetracker.core.model.City
 import uk.co.mhl.timezonetracker.feature.addtimezone.component.AddTimeZoneTopAppBar
@@ -32,7 +31,8 @@ internal fun AddTimeZoneScreen(
     modifier: Modifier = Modifier,
     viewModel: AddTimeZoneViewModel = hiltViewModel(),
 ) {
-    val uiState by viewModel.state.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val searchQueryState by viewModel.searchQueryState.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
         viewModel.effects.collect { effect ->
@@ -43,7 +43,7 @@ internal fun AddTimeZoneScreen(
     }
 
     AddTimeZoneScreen(
-        searchQuery = uiState.searchQuery,
+        searchQuery = searchQueryState,
         onSearchQueryChange = viewModel::onSearchQueryChange,
         cities = uiState.cities,
         onCityClick = viewModel::onCityClick,

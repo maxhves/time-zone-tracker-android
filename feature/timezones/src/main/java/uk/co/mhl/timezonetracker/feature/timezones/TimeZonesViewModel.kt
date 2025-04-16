@@ -24,6 +24,9 @@ class TimeZonesViewModel @Inject constructor(
     private val trackedCitiesTest = userDataRepository.observeTrackedCityIds()
         .flatMapLatest { cityRepository.observeByIds(it) }
 
+    // TODO: Does this work as expected?
+    // TODO: Sometimes emissions do not happen.
+    // TODO: Time should be emitted separately...
     val state: StateFlow<TimeZonesUiState> = combine(
         currentTimeRepository.getCurrentTime(),
         trackedCitiesTest

@@ -7,7 +7,8 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -23,18 +24,14 @@ class AddTimeZoneViewModel @Inject constructor(
 ) : ViewModel() {
     //region State
 
-    private val _searchQueryState = MutableStateFlow("")
-    private val _citiesState = MutableStateFlow(emptyList<City>())
+    val searchQueryState = MutableStateFlow("")
 
-    val state = combine(
-        _searchQueryState,
-        _citiesState
-    ) { query, cities ->
-        val filteredGroupedCities = cities.filterThenGroupAlphabetically(query)
-        AddTimeZoneUiState(
-            searchQuery = query,
-            cities = filteredGroupedCities
-        )
+    val uiState = searchQueryState.flatMapLatest { query ->
+        cityRepository.searchAllCities(query).map { cities ->
+            AddTimeZoneUiState(
+                cities = cities,
+            )
+        }
     }.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5_000),
@@ -50,47 +47,16 @@ class AddTimeZoneViewModel @Inject constructor(
 
     //endregion
 
-    //region Initialization
-
-    init {
-        getAllCities()
-    }
-
-    // TODO: Replace this functionality into a better flow, I don't like it.
-    private fun getAllCities() {
-        viewModelScope.launch {
-            _citiesState.update {
-                cityRepository.getAll()
-            }
-        }
-    }
-
-    //endregion
-
     //region Events
 
     fun onSearchQueryChange(query: String) {
-        _searchQueryState.update { query }
+        searchQueryState.update { query }
     }
 
     fun onCityClick(city: City) {
         viewModelScope.launch {
             userDataRepository.setCityIdTracked(cityId = city.id, tracked = true)
             _effects.emit(OnCityTracked)
-        }
-    }
-
-    //endregion
-
-    //region Helper
-
-    private fun List<City>.filterThenGroupAlphabetically(query: String): Map<Char, List<City>> {
-        return if (query.isBlank()) {
-            groupBy { it.name.first().uppercaseChar() }
-        } else {
-            asSequence()
-                .filter { "${it.name} ${it.country}".contains(query, ignoreCase = true) }
-                .groupBy { it.name.first().uppercaseChar() }
         }
     }
 

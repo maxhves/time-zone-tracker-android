@@ -12,4 +12,7 @@ interface CityDao {
 
     @Query("SELECT * FROM cities")
     suspend fun getAll(): List<LocalCity>
+
+    @Query("SELECT * FROM cities WHERE (name || ' ' || country) LIKE :query")
+    fun searchAllCities(query: String): Flow<List<LocalCity>>
 }

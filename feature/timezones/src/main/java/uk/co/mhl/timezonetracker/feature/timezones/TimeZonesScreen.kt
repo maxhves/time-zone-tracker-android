@@ -9,6 +9,9 @@ import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -19,6 +22,7 @@ import uk.co.mhl.timezonetracker.core.model.City
 import uk.co.mhl.timezonetracker.feature.timezones.component.LocalTimeDisplay
 import uk.co.mhl.timezonetracker.feature.timezones.component.NewTimeZoneFloatingActionButton
 import uk.co.mhl.timezonetracker.feature.timezones.component.TrackedCityItem
+import uk.co.mhl.timezonetracker.feature.timezones.component.TrackedCityOptionsModalBottomSheet
 import java.time.Instant
 
 @Composable
@@ -46,6 +50,8 @@ internal fun TimeZonesScreen(
     onNewTimeZoneClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    var selectedCityId by remember { mutableStateOf<Int?>(null) }
+
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -71,6 +77,11 @@ internal fun TimeZonesScreen(
                 }
             }
         }
+
+        TrackedCityOptionsModalBottomSheet(
+            show = selectedCityId != null,
+            onRemoveClick = { },
+        )
     }
 }
 

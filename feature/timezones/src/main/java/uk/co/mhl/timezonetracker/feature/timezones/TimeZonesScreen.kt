@@ -27,11 +27,12 @@ internal fun TimeZonesScreen(
     modifier: Modifier = Modifier,
     viewModel: TimeZonesViewModel = hiltViewModel(),
 ) {
-    val uiState by viewModel.state.collectAsStateWithLifecycle()
+    val currentTimeState by viewModel.currentTimeState.collectAsStateWithLifecycle()
+    val trackedCitiesState by viewModel.trackedCitiesState.collectAsStateWithLifecycle()
 
     TimeZonesScreen(
-        currentTime = uiState.currentTime,
-        trackedCities = uiState.trackedCities,
+        currentTime = currentTimeState,
+        trackedCities = trackedCitiesState,
         onNewTimeZoneClick = onNewTimeZoneClick,
         modifier = modifier,
     )

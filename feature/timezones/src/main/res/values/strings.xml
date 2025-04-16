@@ -10,4 +10,10 @@
     <string name="local_time_display_label">Your local time</string>
 
     <!-- endregion -->
+
+    <!-- region Tracked City Options -->
+
+    <string name="remove_city_option_label">Remove tracked city</string>
+
+    <!-- endregion -->
 </resources>

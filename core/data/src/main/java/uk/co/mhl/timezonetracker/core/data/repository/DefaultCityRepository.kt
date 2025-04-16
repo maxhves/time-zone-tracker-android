@@ -18,4 +18,14 @@ class DefaultCityRepository @Inject constructor(
     override suspend fun getAll(): List<City> {
         return cityDataSource.getAll().map(LocalCity::toExternal)
     }
+
+    override fun searchAllCities(query: String): Flow<Map<Char, List<City>>> {
+        return cityDataSource.searchAllCities(
+            query = "%${query}%"
+        ).map { cities -> groupCitiesByChar(cities.toExternal()) }
+    }
+
+    private fun groupCitiesByChar(cities: List<City>): Map<Char, List<City>> {
+        return cities.groupBy { it.name.first().uppercaseChar() }
+    }
 }

@@ -38,6 +38,7 @@ internal fun TimeZonesScreen(
         currentTime = currentTimeState,
         trackedCities = trackedCitiesState,
         onNewTimeZoneClick = onNewTimeZoneClick,
+        onRemoveCityClick = viewModel::onRemoveCityClick,
         modifier = modifier,
     )
 }
@@ -48,9 +49,14 @@ internal fun TimeZonesScreen(
     currentTime: Instant,
     trackedCities: List<City>,
     onNewTimeZoneClick: () -> Unit,
+    onRemoveCityClick: (id: Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var contextCityId by rememberSaveable { mutableStateOf<Int?>(null) }
+
+    fun clearContextCityId() {
+        contextCityId = null
+    }
 
     Scaffold(
         modifier = modifier,
@@ -81,8 +87,11 @@ internal fun TimeZonesScreen(
 
         TrackedCityOptionsModalBottomSheet(
             show = contextCityId != null,
-            onRemoveClick = { },
-            onDismiss = { contextCityId = null }
+            onRemoveClick = {
+                contextCityId?.let { onRemoveCityClick(it) }
+                clearContextCityId()
+            },
+            onDismiss = { clearContextCityId() }
         )
     }
 }
@@ -102,6 +111,7 @@ private fun TimeZonesScreenPreview() {
                 )
             ),
             onNewTimeZoneClick = { },
+            onRemoveCityClick = { },
         )
     }
 }

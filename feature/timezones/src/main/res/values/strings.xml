@@ -14,6 +14,7 @@
     <!-- region Tracked City Options -->
 
     <string name="remove_city_option_label">Remove tracked city</string>
+    <string name="tracked_city_item_more">Options</string>
 
     <!-- endregion -->
 </resources>

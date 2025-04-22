@@ -1,10 +1,18 @@
 package uk.co.mhl.timezonetracker.feature.timezones.component
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.MoreVert
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,36 +31,49 @@ internal fun TrackedCityItem(
     currentTime: Instant,
     city: String,
     zoneId: String,
+    onMoreClick: () -> Unit,
 ) {
     val zonedDateFormatted = zonedDateFormatted(currentTime, ZoneId.of(zoneId))
 
-    Column(
+    Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+            .padding(
+                top = 16.dp,
+                bottom = 16.dp,
+                start = 16.dp,
+                end = 8.dp,
+            )
+            .height(IntrinsicSize.Min),
     ) {
-        Text(
-            text = city,
-            style = MaterialTheme.typography.titleMedium,
-            color = MaterialTheme.colorScheme.onBackground.copy(alpha = .75f)
-        )
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween,
+        Column(
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
+            Text(
+                text = city,
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onBackground.copy(alpha = .75f)
+            )
             Text(
                 text = zonedDateFormatted,
                 style = MaterialTheme.typography.headlineSmall,
                 color = MaterialTheme.colorScheme.onBackground,
             )
-            // TODO: Uncomment when we know how to achieve an offset.
-            // Text(
-            //     text = "-5",
-            //     style = MaterialTheme.typography.bodySmall,
-            //     color = MaterialTheme.colorScheme.onBackground.copy(alpha = .5f)
-            // )
+        }
+        Box(
+            modifier = Modifier.fillMaxHeight(),
+            contentAlignment = Alignment.Center,
+        ) {
+            IconButton(
+                onClick = onMoreClick
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.MoreVert,
+                    contentDescription = "TODO",
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
         }
     }
 }
@@ -65,6 +86,7 @@ private fun TrackedCityItemPreview() {
             currentTime = Instant.now(),
             city = "Toronto",
             zoneId = "America/Toronto",
+            onMoreClick = { },
         )
     }
 }

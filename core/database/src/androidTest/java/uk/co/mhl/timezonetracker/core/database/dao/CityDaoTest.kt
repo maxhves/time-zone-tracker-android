@@ -23,4 +23,11 @@ internal class CityDaoTest : DatabaseTest() {
 
         assertEquals(567, cities.count())
     }
+
+    @Test
+    fun searchCitiesByQuery() = runTest {
+        val cities = cityDao.searchAllCities("%london%").first()
+
+        assertEquals(1, cities.count())
+    }
 }

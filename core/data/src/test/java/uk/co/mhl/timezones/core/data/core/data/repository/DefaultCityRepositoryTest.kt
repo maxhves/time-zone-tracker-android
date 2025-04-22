@@ -44,4 +44,11 @@ class DefaultCityRepositoryTest {
 
         assertEquals(3, cities.count())
     }
+
+    @Test
+    fun defaultCityRepository_search_all_cities_returns_correct_cities() = testScope.runTest {
+        val cities = subject.searchAllCities("england").first()
+
+        assertEquals(1, cities.count())
+    }
 }

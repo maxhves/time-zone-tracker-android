@@ -6,6 +6,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import uk.co.mhl.timezonetracker.core.data.repository.CityRepository
 import uk.co.mhl.timezonetracker.core.data.repository.TimeRepository
 import uk.co.mhl.timezonetracker.core.data.repository.UserDataRepository
@@ -16,7 +17,7 @@ import javax.inject.Inject
 class TimeZonesViewModel @Inject constructor(
     currentTimeRepository: TimeRepository,
     cityRepository: CityRepository,
-    userDataRepository: UserDataRepository,
+    private val userDataRepository: UserDataRepository,
 ) : ViewModel() {
     //region State
 
@@ -34,6 +35,16 @@ class TimeZonesViewModel @Inject constructor(
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = emptyList()
         )
+
+    //endregion
+
+    //region Events
+
+    fun onRemoveCityClick(cityId: Int) {
+        viewModelScope.launch {
+            userDataRepository.setCityIdTracked(cityId, false)
+        }
+    }
 
     //endregion
 }

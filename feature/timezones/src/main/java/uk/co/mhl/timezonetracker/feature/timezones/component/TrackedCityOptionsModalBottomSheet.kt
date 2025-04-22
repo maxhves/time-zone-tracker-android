@@ -34,11 +34,12 @@ fun TrackedCityOptionsModalBottomSheet(
     sheetState: SheetState = rememberModalBottomSheetState(),
     show: Boolean,
     onRemoveClick: () -> Unit,
+    onDismiss: () -> Unit,
 ) {
     if (show) {
         ModalBottomSheet(
             modifier = modifier,
-            onDismissRequest = { },
+            onDismissRequest = onDismiss,
             sheetState = sheetState,
         ) {
             TrackedCityOptionsModalBottomSheet(

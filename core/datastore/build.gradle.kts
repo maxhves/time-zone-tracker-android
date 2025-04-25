@@ -45,4 +45,6 @@ dependencies {
     api(project(":core:model"))
     api(libs.androidx.datastore)
     api(libs.protobuf.kotlin.lite)
+
+    testImplementation(libs.kotlinx.coroutines.test)
 }

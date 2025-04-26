@@ -1,6 +1,5 @@
 package uk.co.mhl.timezonetracker.feature.timezones
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,7 +18,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import uk.co.mhl.timezonetracker.core.designsystem.component.TimeZoneTrackerTopAppBar
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
 import uk.co.mhl.timezonetracker.core.model.City
-import uk.co.mhl.timezonetracker.feature.timezones.component.LocalTimeDisplay
 import uk.co.mhl.timezonetracker.feature.timezones.component.NewTimeZoneFloatingActionButton
 import uk.co.mhl.timezonetracker.feature.timezones.component.TrackedCityItem
 import uk.co.mhl.timezonetracker.feature.timezones.component.TrackedCityOptionsModalBottomSheet
@@ -66,22 +64,19 @@ internal fun TimeZonesScreen(
         floatingActionButton = { NewTimeZoneFloatingActionButton(onClick = onNewTimeZoneClick) },
         floatingActionButtonPosition = FabPosition.Center,
     ) { innerPadding ->
-        Column(
+        LazyColumn(
             modifier = Modifier.padding(innerPadding),
         ) {
-            LocalTimeDisplay(currentTime = currentTime)
-            LazyColumn {
-                items(
-                    items = trackedCities,
-                    key = { city -> city.id },
-                ) { city ->
-                    TrackedCityItem(
-                        currentTime = currentTime,
-                        city = city.name,
-                        zoneId = city.zoneId,
-                        onMoreClick = { contextCityId = city.id },
-                    )
-                }
+            items(
+                items = trackedCities,
+                key = { city -> city.id },
+            ) { city ->
+                TrackedCityItem(
+                    currentTime = currentTime,
+                    city = city.name,
+                    zoneId = city.zoneId,
+                    onMoreClick = { contextCityId = city.id },
+                )
             }
         }
 

@@ -26,6 +26,7 @@ fun TimeZoneTrackerTopAppBar(
         colors = colors,
         title = { Text(text = stringResource(titleRes)) },
     )
+    // MediumTopApBar
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

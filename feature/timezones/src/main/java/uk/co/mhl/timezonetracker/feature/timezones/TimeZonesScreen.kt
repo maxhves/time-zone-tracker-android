@@ -1,5 +1,6 @@
 package uk.co.mhl.timezonetracker.feature.timezones
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -13,6 +14,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import uk.co.mhl.timezonetracker.core.designsystem.component.TimeZoneTrackerTopAppBar
@@ -65,7 +67,10 @@ internal fun TimeZonesScreen(
         floatingActionButtonPosition = FabPosition.End,
     ) { innerPadding ->
         LazyColumn(
-            modifier = Modifier.padding(innerPadding),
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             items(
                 items = trackedCities,
@@ -103,6 +108,12 @@ private fun TimeZonesScreenPreview() {
                     name = "Toronto",
                     country = "Canada",
                     zoneId = "America/Toronto",
+                ),
+                City(
+                    id = 1,
+                    name = "London",
+                    country = "United Kingdom",
+                    zoneId = "Europe/London",
                 )
             ),
             onNewTimeZoneClick = { },

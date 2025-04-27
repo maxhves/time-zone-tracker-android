@@ -18,7 +18,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import uk.co.mhl.timezonetracker.core.designsystem.component.TimeZoneTrackerTopAppBar
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
 import uk.co.mhl.timezonetracker.core.model.City
-import uk.co.mhl.timezonetracker.feature.timezones.component.NewTimeZoneFloatingActionButton
+import uk.co.mhl.timezonetracker.feature.timezones.component.AddCityFloatingActionButton
 import uk.co.mhl.timezonetracker.feature.timezones.component.TrackedCityItem
 import uk.co.mhl.timezonetracker.feature.timezones.component.TrackedCityOptionsModalBottomSheet
 import java.time.Instant
@@ -61,8 +61,8 @@ internal fun TimeZonesScreen(
         topBar = {
             TimeZoneTrackerTopAppBar(titleRes = R.string.timezones_screen_title)
         },
-        floatingActionButton = { NewTimeZoneFloatingActionButton(onClick = onNewTimeZoneClick) },
-        floatingActionButtonPosition = FabPosition.Center,
+        floatingActionButton = { AddCityFloatingActionButton(onClick = onNewTimeZoneClick) },
+        floatingActionButtonPosition = FabPosition.End,
     ) { innerPadding ->
         LazyColumn(
             modifier = Modifier.padding(innerPadding),

@@ -5,6 +5,12 @@
 
     <!-- endregion -->
 
+    <!-- region Add City FAB -->
+
+    <string name="add_city_fab_text">Add City</string>
+
+    <!-- endregion -->
+
     <!-- region Local Time Display -->
 
     <string name="local_time_display_label">Your local time</string>

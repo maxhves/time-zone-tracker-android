@@ -11,8 +11,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import uk.co.mhl.timezonetracker.core.datastore.UserPreferencesSerializer
 import uk.co.mhl.timezonetracker.core.datastore.UserPreferences
+import uk.co.mhl.timezonetracker.core.datastore.UserPreferencesSerializer
 import javax.inject.Singleton
 
 @Module

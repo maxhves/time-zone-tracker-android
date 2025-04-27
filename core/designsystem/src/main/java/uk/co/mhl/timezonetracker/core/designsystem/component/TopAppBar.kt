@@ -1,8 +1,8 @@
 package uk.co.mhl.timezonetracker.core.designsystem.component
 
 import androidx.annotation.StringRes
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
@@ -21,7 +21,7 @@ fun TimeZoneTrackerTopAppBar(
     modifier: Modifier = Modifier,
     colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
 ) {
-    CenterAlignedTopAppBar(
+    MediumTopAppBar(
         modifier = modifier,
         colors = colors,
         title = { Text(text = stringResource(titleRes)) },

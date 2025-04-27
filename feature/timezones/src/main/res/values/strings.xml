@@ -1,7 +1,13 @@
 <resources>
     <!-- region Screen -->
 
-    <string name="timezones_screen_title">Time Zones</string>
+    <string name="timezones_screen_title">Tracked cities</string>
+
+    <!-- endregion -->
+
+    <!-- region Add City FAB -->
+
+    <string name="add_city_fab_text">Add City</string>
 
     <!-- endregion -->
 

@@ -3,7 +3,6 @@ package uk.co.mhl.timezones.core.data.core.data.testdoubles
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import uk.co.mhl.timezonetracker.core.database.dao.CityDao
 import uk.co.mhl.timezonetracker.core.database.model.LocalCity

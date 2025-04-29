@@ -1,0 +1,27 @@
+language: android
+dist: focal
+android:
+  components:
+    # Uncomment these if you need the latest SDK tools:
+    # - tools
+    # - platform-tools
+
+    # Build Tools for API 35
+    - build-tools;35.0.0
+
+    # Android SDK Platform for API 35
+    - platforms;android-35
+
+    # Android system image for API 30 with Google APIs (x86_64)
+    - system-images;android-35;google_apis;x86_64 
+
+    # Required extras
+    - extras;android;m2repository         # Android Support Repository (v47.0.0)
+    - extras;google;auto                  # Android Auto Desktop Head Unit Emulator (v2.0)
+    - extras;google;google_play_services  # Google Play services (v49)
+    - extras;google;instantapps           # Google Play Instant Development SDK (v1.9.0)
+    - extras;google;m2repository          # Google Repository (v58)
+    - extras;google;market_apk_expansion  # Google Play APK Expansion library (v1)
+    - extras;google;market_licensing      # Google Play Licensing Library (v1)
+    - extras;google;simulators            # Android Auto API Simulators (v1)
+    - extras;google;webdriver             # Google WebDriver

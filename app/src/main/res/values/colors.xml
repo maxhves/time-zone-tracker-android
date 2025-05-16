@@ -1,10 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- region Theme colors -->
+
+    <color name="primary">#FF203467</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="primary_container">#FF596BA2</color>
+    <color name="on_primary_container">#FFFFFFFF</color>
+
+    <color name="secondary">#FF303648</color>
+    <color name="on_secondary">#FFFFFFFF</color>
+    <color name="secondary_container">#FF676C81</color>
+    <color name="on_secondary_container">#FFFFFFFF</color>
+
+    <color name="tertiary">#FF003E31</color>
+    <color name="on_tertiary">#FFFFFFFF</color>
+    <color name="tertiary_container">#FF287A64</color>
+    <color name="on_tertiary_container">#FFFFFFFF</color>
+
+    <color name="error">#FF740006</color>
+    <color name="on_error">#FFFFFFFF</color>
+    <color name="error_container">#FFCF2C27</color>
+    <color name="on_error_container">#FFFFFFFF</color>
+
+    <color name="background">#FFFAF8FF</color>
+    <color name="on_background">#FF1A1B21</color>
+    <color name="surface">#FFFAF8FF</color>
+    <color name="on_surface">#FF101116</color>
+
+    <color name="surface_variant">#FFE2E2EC</color>
+    <color name="on_surface_variant">#FF34363E</color>
+    <color name="outline">#FF50525B</color>
+    <color name="outline_variant">#FF6B6C75</color>
+    <color name="scrim">#FF000000</color>
+
+    <color name="inverse_surface">#FF2F3036</color>
+    <color name="inverse_on_surface">#FFF1F0F7</color>
+    <color name="inverse_primary">#FFB3C5FF</color>
+
+    <color name="surface_dim">#FFC6C6CD</color>
+    <color name="surface_bright">#FFFAF8FF</color>
+    <color name="surface_container_lowest">#FFFFFFFF</color>
+    <color name="surface_container_low">#FFF4F3FA</color>
+    <color name="surface_container">#FFE8E7EF</color>
+    <color name="surface_container_high">#FFDDDCE3</color>
+    <color name="surface_container_highest">#FFD2D1D8</color>
+
+    <!-- endregion -->
 </resources>

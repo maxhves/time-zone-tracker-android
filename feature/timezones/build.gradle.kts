@@ -9,4 +9,6 @@ android {
 
 dependencies {
     implementation(project(":core:data"))
+
+    testImplementation(project(":core:testing"))
 }

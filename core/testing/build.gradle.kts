@@ -12,4 +12,6 @@ dependencies {
 
     api(project(":core:data"))
     api(project(":core:model"))
+
+    implementation(libs.androidx.test.rules)
 }

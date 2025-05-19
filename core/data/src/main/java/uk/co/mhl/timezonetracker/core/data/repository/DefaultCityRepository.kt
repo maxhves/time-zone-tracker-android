@@ -2,6 +2,7 @@ package uk.co.mhl.timezonetracker.core.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import uk.co.mhl.timezonetracker.core.data.util.groupByChar
 import uk.co.mhl.timezonetracker.core.database.dao.CityDao
 import uk.co.mhl.timezonetracker.core.database.model.LocalCity
 import uk.co.mhl.timezonetracker.core.database.model.toExternal
@@ -20,12 +21,8 @@ class DefaultCityRepository @Inject constructor(
     }
 
     override fun searchAllCities(query: String): Flow<Map<Char, List<City>>> {
-        return cityDataSource.searchAllCities(
-            query = "%${query}%"
-        ).map { cities -> groupCitiesByChar(cities.toExternal()) }
-    }
-
-    private fun groupCitiesByChar(cities: List<City>): Map<Char, List<City>> {
-        return cities.groupBy { it.name.first().uppercaseChar() }
+        return cityDataSource.searchAllCities(query = "%${query}%")
+            .map(List<LocalCity>::toExternal)
+            .map(List<City>::groupByChar)
     }
 }

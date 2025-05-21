@@ -1,10 +1,8 @@
 package uk.co.mhl.timezonetracker.feature.timezones.navigation
 
-import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import androidx.navigation3.runtime.EntryProvider
 import androidx.navigation3.runtime.EntryProviderBuilder
 import androidx.navigation3.runtime.entry
 import kotlinx.serialization.Serializable
@@ -34,9 +32,9 @@ fun NavGraphBuilder.timeZonesSection(
 }
 
 
-fun EntryProviderBuilder<*>.timeZonesSection(
+fun EntryProviderBuilder<Any>.timeZonesSection(
     onNewTimeZoneClick: () -> Unit,
-    addTimeZoneDestination: EntryProviderBuilder<*>.() -> Unit,
+    addTimeZoneDestination: EntryProviderBuilder<Any>.() -> Unit,
 ) {
     entry<TimeZonesBaseRoute> {
         TimeZonesScreen(

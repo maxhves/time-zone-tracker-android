@@ -1,5 +1,6 @@
 package uk.co.mhl.timezonetracker.feature.addtimezone.navigation
 
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptionsBuilder
@@ -19,6 +20,10 @@ fun NavController.navigateToAddTimeZone(navOptions: NavOptionsBuilder.() -> Unit
     navigate(route = AddTimeZoneRoute) {
         navOptions()
     }
+}
+
+fun SnapshotStateList<Any>.navigateToAddTimeZone() {
+    add(AddTimeZoneRoute)
 }
 
 //endregion

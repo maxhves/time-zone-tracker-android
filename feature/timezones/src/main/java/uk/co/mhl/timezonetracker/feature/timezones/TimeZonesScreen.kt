@@ -26,7 +26,7 @@ import uk.co.mhl.timezonetracker.feature.timezones.component.TrackedCityOptionsM
 import java.time.Instant
 
 @Composable
-internal fun TimeZonesScreen(
+fun TimeZonesScreen(
     onNewTimeZoneClick: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: TimeZonesViewModel = hiltViewModel(),

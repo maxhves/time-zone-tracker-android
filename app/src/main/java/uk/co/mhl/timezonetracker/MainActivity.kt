@@ -6,8 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import dagger.hilt.android.AndroidEntryPoint
 import uk.co.mhl.timezonetracker.core.designsystem.theme.TimeZoneTrackerTheme
-import uk.co.mhl.timezonetracker.navigation.TimeZoneTrackerNavDisplay
-import uk.co.mhl.timezonetracker.navigation.TimeZoneTrackerNavHost
+import uk.co.mhl.timezonetracker.navigation.MainNavigation
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -17,7 +16,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TimeZoneTrackerTheme {
                 // TimeZoneTrackerNavHost()
-                TimeZoneTrackerNavDisplay()
+                MainNavigation()
             }
         }
     }

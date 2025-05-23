@@ -8,17 +8,21 @@ import uk.co.mhl.timezonetracker.core.data.repository.UserDataRepository
 
 class TestUserDataRepository : UserDataRepository {
 
-    private val trackedCityIds: MutableSharedFlow<MutableSet<Int>> = MutableSharedFlow(
+    private val trackedCityIds: MutableSharedFlow<Set<Int>> = MutableSharedFlow(
         replay = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST,
     )
+    
+    init {
+        sendTrackedCities(emptySet())
+    }
 
     override fun observeTrackedCityIds(): Flow<Set<Int>> {
         return trackedCityIds
     }
 
     override suspend fun setCityIdTracked(cityId: Int, tracked: Boolean) {
-        val current = trackedCityIds.first()
+        val current = trackedCityIds.first().toMutableSet()
 
         if (tracked) {
             current.add(cityId)
@@ -27,5 +31,9 @@ class TestUserDataRepository : UserDataRepository {
         }
 
         trackedCityIds.tryEmit(current)
+    }
+
+    fun sendTrackedCities(ids: Set<Int>) {
+        trackedCityIds.tryEmit(ids)
     }
 }

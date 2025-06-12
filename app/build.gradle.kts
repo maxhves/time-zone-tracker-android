@@ -50,13 +50,10 @@ dependencies {
     ksp(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
-    // Navigation 3
+    // Navigation
     implementation(libs.androidx.lifecycle.viewmodel.navigation3)
     implementation(libs.androidx.navigation3.runtime)
     implementation(libs.androidx.navigation3.ui)
-
-    // TODO: Remove Navigation 2
-    implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
 
     // Room

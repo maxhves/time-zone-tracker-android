@@ -25,7 +25,7 @@ import uk.co.mhl.timezonetracker.core.model.City
 import uk.co.mhl.timezonetracker.feature.addtimezone.component.AddTimeZoneTopAppBar
 
 @Composable
-internal fun AddTimeZoneScreen(
+fun AddTimeZoneScreen(
     onCityTracked: () -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,

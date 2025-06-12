@@ -21,16 +21,10 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 "implementation"(project(":core:designsystem"))
                 "implementation"(project(":core:ui"))
 
-                // Navigation 3
                 "implementation"(libs.findLibrary("androidx-lifecycle-viewmodel-navigation3").get())
                 "implementation"(libs.findLibrary("androidx.navigation3.runtime").get())
                 "implementation"(libs.findLibrary("androidx.navigation3.ui").get())
-
-                // TODO: Remove...
-                // Navigation 2
                 "implementation"(libs.findLibrary("androidx.hilt.navigation.compose").get())
-                "implementation"(libs.findLibrary("androidx.navigation.compose").get())
-
                 "implementation"(libs.findLibrary("androidx.lifecycle.runtimeCompose").get())
                 "implementation"(libs.findLibrary("kotlinx.serialization.json").get())
             }
